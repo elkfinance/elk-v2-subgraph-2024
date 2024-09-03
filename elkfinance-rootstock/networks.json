@@ -1,0 +1,8 @@
+{
+  "rootstock": {
+    "ElkFactory": {
+      "address": "0x69D10bc18cD588A4b70F836a471D4e9C2FD86092",
+      "startBlock": 6414501
+    }
+  }
+}
