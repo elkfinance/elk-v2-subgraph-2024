@@ -11,7 +11,7 @@ export class TokenDefinition {
   static getStaticDefinitions(): Array<TokenDefinition> {
     const staticDefinitions: Array<TokenDefinition> = [
       {
-        address: Address.fromString('0xeeeeeB57642040BE42185f49c52f7E9B38F8eEeE'),
+        address: Address.fromString('0xeEeEEb57642040bE42185f49C52F7E9B38f8eeeE'),
         symbol: 'ELK',
         name: 'Elk',
         decimals: BigInt.fromI32(18),
