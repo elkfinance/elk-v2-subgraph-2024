@@ -3,11 +3,11 @@ services:
   graph-node:
     image: graphprotocol/graph-node
     ports:
-      - '8000:8000'
-      - '8001:8001'
-      - '8020:8020'
-      - '8030:8030'
-      - '8040:8040'
+      - '8000:8002'
+      - '8001:8003'
+      - '8020:8021'
+      - '8030:8031'
+      - '8040:8041'
     depends_on:
       - ipfs
       - postgres

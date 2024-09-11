@@ -19,8 +19,8 @@ export let BI_18 = BigInt.fromI32(18)
 
 export let factoryContract = FactoryContract.bind(Address.fromString(FACTORY_ADDRESS))
 
-// Untracked pairs (do not count towards volume)
-export let UNTRACKED_PAIRS: string[] = []
+// rebass tokens, dont count in tracked volume
+export let UNTRACKED_PAIRS: string[] = ['0x0000000000000000000000000000000000000000']
 
 export function exponentToBigDecimal(decimals: BigInt): BigDecimal {
   let bd = BigDecimal.fromString('1')

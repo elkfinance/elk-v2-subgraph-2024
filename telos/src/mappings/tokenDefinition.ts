@@ -15,7 +15,7 @@ export class TokenDefinition {
         symbol: 'ELK',
         name: 'Elk',
         decimals: BigInt.fromI32(18),
-      }
+      },
     ]
     return staticDefinitions
   }

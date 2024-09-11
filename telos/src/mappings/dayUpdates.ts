@@ -1,32 +1,32 @@
 /* eslint-disable prefer-const */
 import { BigDecimal, BigInt, ethereum } from '@graphprotocol/graph-ts'
 
-import { Bundle, Pair, PairDayData, Token, TokenDayData, UniswapDayData, UniswapFactory } from '../types/schema'
+import { Bundle, Pair, PairDayData, Token, TokenDayData, ElkDayData, ElkFactory } from '../types/schema'
 import { PairHourData } from './../types/schema'
 import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI } from './helpers'
 
-export function updateUniswapDayData(event: ethereum.Event): UniswapDayData {
-  let uniswap = UniswapFactory.load(FACTORY_ADDRESS)!
+export function updateElkDayData(event: ethereum.Event): ElkDayData {
+  let elkdex = ElkFactory.load(FACTORY_ADDRESS)!
   let timestamp = event.block.timestamp.toI32()
   let dayID = timestamp / 86400
   let dayStartTimestamp = dayID * 86400
-  let uniswapDayData = UniswapDayData.load(dayID.toString())
-  if (uniswapDayData === null) {
-    uniswapDayData = new UniswapDayData(dayID.toString())
-    uniswapDayData.date = dayStartTimestamp
-    uniswapDayData.dailyVolumeUSD = ZERO_BD
-    uniswapDayData.dailyVolumeETH = ZERO_BD
-    uniswapDayData.totalVolumeUSD = ZERO_BD
-    uniswapDayData.totalVolumeETH = ZERO_BD
-    uniswapDayData.dailyVolumeUntracked = ZERO_BD
+  let elkDayData = ElkDayData.load(dayID.toString())
+  if (elkDayData === null) {
+    elkDayData = new ElkDayData(dayID.toString())
+    elkDayData.date = dayStartTimestamp
+    elkDayData.dailyVolumeUSD = ZERO_BD
+    elkDayData.dailyVolumeETH = ZERO_BD
+    elkDayData.totalVolumeUSD = ZERO_BD
+    elkDayData.totalVolumeETH = ZERO_BD
+    elkDayData.dailyVolumeUntracked = ZERO_BD
   }
 
-  uniswapDayData.totalLiquidityUSD = uniswap.totalLiquidityUSD
-  uniswapDayData.totalLiquidityETH = uniswap.totalLiquidityETH
-  uniswapDayData.txCount = uniswap.txCount
-  uniswapDayData.save()
+  elkDayData.totalLiquidityUSD = elkdex.totalLiquidityUSD
+  elkDayData.totalLiquidityETH = elkdex.totalLiquidityETH
+  elkDayData.txCount = elkdex.txCount
+  elkDayData.save()
 
-  return uniswapDayData as UniswapDayData
+  return elkDayData as ElkDayData
 }
 
 export function updatePairDayData(event: ethereum.Event): PairDayData {

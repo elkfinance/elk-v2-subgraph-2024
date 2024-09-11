@@ -5,33 +5,53 @@ import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
 const WETH_ADDRESS = '0xd102ce6a4db07d247fcc28f366a623df0938ca9e'
-const USDT_WETH_PAIR = '0xc395fb127103e4d0a85f375a6b0f724fc99abccc'
+const USDC_WETH_PAIR = '0xc395fb127103e4d0a85f375a6b0f724fc99abccc' // 
+const DAI_WETH_PAIR = '0x0000000000000000000000000000000000000000' // No DAI available
+const USDT_WETH_PAIR = '0x134a28845005eddb5902dc13a4af8c4454a79ea0' // 
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
+  let daiPair = Pair.load(DAI_WETH_PAIR) // dai is token0
+  let usdcPair = Pair.load(USDC_WETH_PAIR) // usdc is token0
   let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token0
 
-  if (usdtPair !== null) {
-    return usdtPair.token0Price
+  // all 3 have been created
+  if (daiPair !== null && usdcPair !== null && usdtPair !== null) {
+    let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve1)
+    let daiWeight = daiPair.reserve1.div(totalLiquidityETH)
+    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
+    let usdtWeight = usdtPair.reserve1.div(totalLiquidityETH)
+    return daiPair.token0Price
+      .times(daiWeight)
+      .plus(usdcPair.token0Price.times(usdcWeight))
+      .plus(usdtPair.token0Price.times(usdtWeight))
+    // dai and USDC have been created
+  } else if (daiPair !== null && usdcPair !== null) {
+    let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1)
+    let daiWeight = daiPair.reserve1.div(totalLiquidityETH)
+    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
+    return daiPair.token0Price.times(daiWeight).plus(usdcPair.token0Price.times(usdcWeight))
+    // USDC is the only pair so far
+  } else if (usdcPair !== null) {
+    return usdcPair.token0Price
   } else {
-    return ONE_BD
+    return ZERO_BD
   }
 }
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  WETH_ADDRESS, // WTELOS
-  '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // elk
-  '0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c', // old_elk
-  '0xe1c8f3d529bea8e3fa1fac5b416335a2f998ee1c', // elk_legacy
-  '0x8d97cea50351fb4329d591682b148d43a0c3611b', // USDC
+  '0xd102ce6a4db07d247fcc28f366a623df0938ca9e', // WTELOS
+  '0x975ed13fa16857e83e7c493c7741d556eaad4a3f', //USDT
+  '0x8d97cea50351fb4329d591682b148d43a0c3611b', //USDC
+  '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', //ELK
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
-let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('0')
+let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('400000')
 
 // minimum liquidity for price to get tracked
-let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('0')
+let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('2')
 
 /**
  * Search through graph to find derived Eth per token.

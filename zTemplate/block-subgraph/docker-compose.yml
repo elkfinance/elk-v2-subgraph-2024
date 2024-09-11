@@ -3,11 +3,11 @@ services:
   graph-node:
     image: graphprotocol/graph-node
     ports:
-      - "8000:8002"
-      - "8001:8003"
-      - "8020:8021"
-      - "8030:8031"
-      - "8040:8041"
+      - "8000:Replace_8000"
+      - "8001:Replace_8001"
+      - "8020:Replace_8020"
+      - "8030:Replace_8030"
+      - "8040:Replace_8040"
     depends_on:
       - ipfs
       - postgres
@@ -19,7 +19,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: "ipfs:5001"
-      ethereum: "mainnet:https://mainnet.telos.net:443/evm"
+      ethereum: "mainnet:Replace_rpc"
       GRAPH_LOG: info
   ipfs:
     image: ipfs/kubo:v0.17.0
