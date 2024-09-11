@@ -1,12 +1,12 @@
 specVersion: 0.0.4
-description: ElkDex is a decentralized protocol for automated token exchange on EVM Chains.
+description: ElkDex is a decentralized cross-chain exchange.
 repository: https://github.com/elkfinance/elk-v2-subgraph-2024
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: mainnet
+    network: rootstock
     source:
       address: '0xfbb4E52FEcc90924c79F980eb24a9794ae4aFFA4'
       abi: Factory
@@ -34,7 +34,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pair
-    network: mainnet
+    network: rootstock
     source:
       abi: Pair
     mapping:

@@ -9,7 +9,7 @@ import { Factory as FactoryContract } from '../types/templates/Pair/Factory'
 import { TokenDefinition } from './tokenDefinition'
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
-export const FACTORY_ADDRESS = '0xfbb4e52fecc90924c79f980eb24a9794ae4affa4'
+export const FACTORY_ADDRESS = '0x69d10bc18cd588a4b70f836a471d4e9c2fd86092'
 
 export let ZERO_BI = BigInt.fromI32(0)
 export let ONE_BI = BigInt.fromI32(1)
@@ -19,8 +19,8 @@ export let BI_18 = BigInt.fromI32(18)
 
 export let factoryContract = FactoryContract.bind(Address.fromString(FACTORY_ADDRESS))
 
-// rebass tokens, dont count in tracked volume
-export let UNTRACKED_PAIRS: string[] = ['0x0000000000000000000000000000000000000000']
+// Untracked pairs (do not count towards volume)
+export let UNTRACKED_PAIRS: string[] = []
 
 export function exponentToBigDecimal(decimals: BigInt): BigDecimal {
   let bd = BigDecimal.fromString('1')

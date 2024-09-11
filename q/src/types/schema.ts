@@ -11,7 +11,7 @@ import {
   BigDecimal,
 } from "@graphprotocol/graph-ts";
 
-export class UniswapFactory extends Entity {
+export class ElkDexFactory extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -19,24 +19,24 @@ export class UniswapFactory extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save UniswapFactory entity without an ID");
+    assert(id != null, "Cannot save ElkDexFactory entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type UniswapFactory must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ElkDexFactory must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("UniswapFactory", id.toString(), this);
+      store.set("ElkDexFactory", id.toString(), this);
     }
   }
 
-  static loadInBlock(id: string): UniswapFactory | null {
-    return changetype<UniswapFactory | null>(
-      store.get_in_block("UniswapFactory", id),
+  static loadInBlock(id: string): ElkDexFactory | null {
+    return changetype<ElkDexFactory | null>(
+      store.get_in_block("ElkDexFactory", id),
     );
   }
 
-  static load(id: string): UniswapFactory | null {
-    return changetype<UniswapFactory | null>(store.get("UniswapFactory", id));
+  static load(id: string): ElkDexFactory | null {
+    return changetype<ElkDexFactory | null>(store.get("ElkDexFactory", id));
   }
 
   get id(): string {
@@ -1518,7 +1518,7 @@ export class Bundle extends Entity {
   }
 }
 
-export class UniswapDayData extends Entity {
+export class ElkDexDayData extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -1526,24 +1526,24 @@ export class UniswapDayData extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save UniswapDayData entity without an ID");
+    assert(id != null, "Cannot save ElkDexDayData entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type UniswapDayData must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ElkDexDayData must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("UniswapDayData", id.toString(), this);
+      store.set("ElkDexDayData", id.toString(), this);
     }
   }
 
-  static loadInBlock(id: string): UniswapDayData | null {
-    return changetype<UniswapDayData | null>(
-      store.get_in_block("UniswapDayData", id),
+  static loadInBlock(id: string): ElkDexDayData | null {
+    return changetype<ElkDexDayData | null>(
+      store.get_in_block("ElkDexDayData", id),
     );
   }
 
-  static load(id: string): UniswapDayData | null {
-    return changetype<UniswapDayData | null>(store.get("UniswapDayData", id));
+  static load(id: string): ElkDexDayData | null {
+    return changetype<ElkDexDayData | null>(store.get("ElkDexDayData", id));
   }
 
   get id(): string {

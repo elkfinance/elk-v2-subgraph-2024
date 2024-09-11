@@ -4,36 +4,15 @@ import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts/index'
 import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
-const WETH_ADDRESS = '0x967f8799aF07DF1534d48A95a5C9FEBE92c53ae0'
-const USDC_WETH_PAIR = '0x0000000000000000000000000000000000000000' // No USDC Available
-const DAI_WETH_PAIR = '0x0000000000000000000000000000000000000000' // No DAI available
-const USDT_WETH_PAIR = '0x9eaa383898CADE8638D1AEeDBf3cEfe212912DC0' // 
+const WETH_ADDRESS = '0x967f8799af07df1534d48a95a5c9febe92c53ae0'
+const USDT_WETH_PAIR = '0x9eaa383898cade8638d1aeedbf3cefe212912dc0' // rUSDT-WRBTC pair
 
+// Function to get the ETH price in USD based on the USDT-WETH pair
 export function getEthPriceInUSD(): BigDecimal {
-  // fetch eth prices for each stablecoin
-  let daiPair = Pair.load(DAI_WETH_PAIR) // dai is token0
-  let usdcPair = Pair.load(USDC_WETH_PAIR) // usdc is token0
   let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token1
 
-  // all 3 have been created
-  if (daiPair !== null && usdcPair !== null && usdtPair !== null) {
-    let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve0)
-    let daiWeight = daiPair.reserve1.div(totalLiquidityETH)
-    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    let usdtWeight = usdtPair.reserve0.div(totalLiquidityETH)
-    return daiPair.token0Price
-      .times(daiWeight)
-      .plus(usdcPair.token0Price.times(usdcWeight))
-      .plus(usdtPair.token1Price.times(usdtWeight))
-    // dai and USDC have been created
-  } else if (daiPair !== null && usdcPair !== null) {
-    let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1)
-    let daiWeight = daiPair.reserve1.div(totalLiquidityETH)
-    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    return daiPair.token0Price.times(daiWeight).plus(usdcPair.token0Price.times(usdcWeight))
-    // USDC is the only pair so far
-  } else if (usdcPair !== null) {
-    return usdcPair.token0Price
+  if (usdtPair !== null) {
+    return usdtPair.token1Price // Use USDT price to derive ETH price in USD
   } else {
     return ZERO_BD
   }
@@ -41,13 +20,13 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  '0x967f8799aF07DF1534d48A95a5C9FEBE92c53ae0', // WBTC (WETH)
-  '0xef213441A85dF4d7ACbDaE0Cf78004e1E486bB96', //USDT
-  '0xeeeeeB57642040BE42185f49c52f7E9B38F8eEeE', //ELK
-  '0x1D931BF8656D795e50Ef6d639562C5bD8AC2b78F' //ETHs
+  '0x967f8799af07df1534d48a95a5c9febe92c53ae0', // WBTC (WETH)
+  '0xef213441a85df4d7acbdae0cf78004e1e486bb96', // USDT
+  '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
+  '0x1d931bf8656d795e50ef6d639562c5bd8ac2b78f' // ETHs
 ]
 
-// minimum liquidity required to count towards tracked volume for pairs with small # of Lps
+// minimum liquidity required to count towards tracked volume for pairs with small # of LPs
 let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('400000')
 
 // minimum liquidity for price to get tracked
@@ -110,7 +89,7 @@ export function getTrackedVolumeUSD(
     return ZERO_BD
   }
 
-  // if less than 5 LPs, require high minimum reserve amount amount or return 0
+  // if less than 5 LPs, require high minimum reserve amount or return 0
   if (pair.liquidityProviderCount.lt(BigInt.fromI32(5))) {
     let reserve0USD = pair.reserve0.times(price0)
     let reserve1USD = pair.reserve1.times(price1)
