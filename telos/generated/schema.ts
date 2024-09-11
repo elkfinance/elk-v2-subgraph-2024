@@ -11,7 +11,7 @@ import {
   BigDecimal,
 } from "@graphprotocol/graph-ts";
 
-export class UniswapFactory extends Entity {
+export class ElkFactory extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -19,24 +19,24 @@ export class UniswapFactory extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save UniswapFactory entity without an ID");
+    assert(id != null, "Cannot save ElkFactory entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type UniswapFactory must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ElkFactory must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("UniswapFactory", id.toString(), this);
+      store.set("ElkFactory", id.toString(), this);
     }
   }
 
-  static loadInBlock(id: string): UniswapFactory | null {
-    return changetype<UniswapFactory | null>(
-      store.get_in_block("UniswapFactory", id),
+  static loadInBlock(id: string): ElkFactory | null {
+    return changetype<ElkFactory | null>(
+      store.get_in_block("ElkFactory", id),
     );
   }
 
-  static load(id: string): UniswapFactory | null {
-    return changetype<UniswapFactory | null>(store.get("UniswapFactory", id));
+  static load(id: string): ElkFactory | null {
+    return changetype<ElkFactory | null>(store.get("ElkFactory", id));
   }
 
   get id(): string {
