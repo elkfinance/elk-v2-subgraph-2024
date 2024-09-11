@@ -19,7 +19,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: 'mainnet:https://cronos-evm-rpc.publicnode.com'
+      ethereum: 'mainnet:https://rpc.vvs.finance'
       GRAPH_LOG: info
   ipfs:
     image: ipfs/kubo:v0.17.0
