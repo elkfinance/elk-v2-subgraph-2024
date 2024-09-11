@@ -20,7 +20,7 @@ Below are a few ways to show how to query the Elk subgraph for data. The queries
 
 ## Key Entity Overviews
 
-#### ElkDexFactory
+#### ElkFactory
 
 Contains data across all of Elk. This entity tracks important things like total liquidity, all time volume, transaction count, number of pairs and more.
 
