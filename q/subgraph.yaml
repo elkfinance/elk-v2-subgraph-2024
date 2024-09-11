@@ -6,9 +6,9 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: rootstock
+    network: mainnet
     source:
-      address: '0xfbb4E52FEcc90924c79F980eb24a9794ae4aFFA4'
+      address: '0xfbb4e52fecc90924c79f980eb24a9794ae4affa4'
       abi: Factory
       startBlock: 8009771
     mapping:
@@ -34,7 +34,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pair
-    network: rootstock
+    network: mainnet
     source:
       abi: Pair
     mapping:
