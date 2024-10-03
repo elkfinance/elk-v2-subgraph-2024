@@ -5,7 +5,7 @@ import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
 const WETH_ADDRESS = '0xd07178e3ecbc78de110df84fe1a979d5f349784a'
-const USDT_WETH_PAIR = '0xc97f67086655853b8FA785c628cC8D2f8efb2a47' // WQGOV-QUSD
+const USDT_WETH_PAIR = '0xc97f67086655853b8fa785c628cc8d2f8efb2a47' // WQGOV-QUSD
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
