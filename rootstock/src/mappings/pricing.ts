@@ -20,7 +20,7 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  '0x967f8799af07df1534d48a95a5c9febe92c53ae0', // WBTC (WETH)
+  '0x542fda317318ebf1d3deaf76e0b632741a7e677d', // WBTC (WETH)
   '0xef213441a85df4d7acbdae0cf78004e1e486bb96', // USDT
   '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
   '0x1d931bf8656d795e50ef6d639562c5bd8ac2b78f' // ETHs
