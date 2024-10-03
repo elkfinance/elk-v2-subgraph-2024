@@ -4,7 +4,7 @@ import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts/index'
 import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
-const WETH_ADDRESS = '0x967f8799af07df1534d48a95a5c9febe92c53ae0'
+const WETH_ADDRESS = '0x542fda317318ebf1d3deaf76e0b632741a7e677d'
 const USDT_WETH_PAIR = '0x9eaa383898cade8638d1aeedbf3cefe212912dc0' // rUSDT-WRBTC pair
 
 // Function to get the ETH price in USD based on the USDT-WETH pair
