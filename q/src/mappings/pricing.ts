@@ -20,7 +20,6 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  WETH_ADDRESS, // WQ
   '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // elk
   '0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c', // old_elk
   '0xe1c8f3d529bea8e3fa1fac5b416335a2f998ee1c', // elk_legacy
