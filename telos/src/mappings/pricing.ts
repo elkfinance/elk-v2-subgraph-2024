@@ -9,12 +9,13 @@ const USDT_WETH_PAIR = '0xc395fb127103e4d0a85f375a6b0f724fc99abccc' // USDT-WTLO
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token1
+  let usdtPair = Pair.load(USDT_WETH_PAIR)
 
-  if (usdtPair !== null) {
-    return usdtPair.token0Price
+  // Check if the USDT-WTLOS pair exists, and return the correct price
+  if (usdtPair !== null && usdtPair.token0Price !== null && usdtPair.token0Price.gt(ZERO_BD)) {
+    return usdtPair.token0Price // token0 is USDT, so return the price of WTLOS in USDT
   } else {
-    return ONE_BD
+    return ONE_BD // If the pair doesn't exist or the price is not available, return a default price (1 USD)
   }
 }
 
@@ -34,13 +35,14 @@ let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('0')
 let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('0')
 
 /**
- * Search through graph to find derived Eth per token.
- * @todo update to be derived ETH (add stablecoin estimates)
+ * Search through graph to find derived WTLOS per token.
+ * @todo update to be derived WTLOS (add stablecoin estimates)
  **/
 export function findEthPerToken(token: Token): BigDecimal {
   if (token.id == WETH_ADDRESS) {
-    return ONE_BD
+    return getEthPriceInUSD() // WTLOS price should be derived from USDT
   }
+
   // loop through whitelist and check if paired with any
   for (let i = 0; i < WHITELIST.length; ++i) {
     let pairAddress = factoryContract.getPair(Address.fromString(token.id), Address.fromString(WHITELIST[i]))
@@ -49,6 +51,7 @@ export function findEthPerToken(token: Token): BigDecimal {
       if (pair === null) {
         continue
       }
+
       if (pair.token0 == token.id && pair.reserveETH.gt(MINIMUM_LIQUIDITY_THRESHOLD_ETH)) {
         let token1 = Token.load(pair.token1)
         if (token1 === null) {
@@ -56,6 +59,7 @@ export function findEthPerToken(token: Token): BigDecimal {
         }
         return pair.token1Price.times(token1.derivedETH as BigDecimal) // return token1 per our token * Eth per token 1
       }
+
       if (pair.token1 == token.id && pair.reserveETH.gt(MINIMUM_LIQUIDITY_THRESHOLD_ETH)) {
         let token0 = Token.load(pair.token0)
         if (token0 === null) {
@@ -85,12 +89,12 @@ export function getTrackedVolumeUSD(
   let price0 = token0.derivedETH.times(bundle.ethPrice)
   let price1 = token1.derivedETH.times(bundle.ethPrice)
 
-  // dont count tracked volume on these pairs - usually rebass tokens
+  // don't count tracked volume on these pairs - usually rebass tokens
   if (UNTRACKED_PAIRS.includes(pair.id)) {
     return ZERO_BD
   }
 
-  // if less than 5 LPs, require high minimum reserve amount amount or return 0
+  // if less than 5 LPs, require high minimum reserve amount or return 0
   if (pair.liquidityProviderCount.lt(BigInt.fromI32(5))) {
     let reserve0USD = pair.reserve0.times(price0)
     let reserve1USD = pair.reserve1.times(price1)
