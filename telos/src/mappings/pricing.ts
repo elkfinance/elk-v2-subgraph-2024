@@ -8,14 +8,14 @@ const WETH_ADDRESS = '0xd102ce6a4db07d247fcc28f366a623df0938ca9e' // WTLOS
 const USDT_WETH_PAIR = '0xc395fb127103e4d0a85f375a6b0f724fc99abccc' // USDT-WTLOS (USDT is token0)
 
 export function getEthPriceInUSD(): BigDecimal {
-  // Load the USDT-WTLOS pair, where USDT is token0 and WTLOS is token1
+  // fetch WTLOS prices using the USDT-WTLOS pair, where USDT is token0
   let usdtPair = Pair.load(USDT_WETH_PAIR) // USDT is token0, WTLOS is token1
 
   if (usdtPair !== null) {
-    // token1Price is the price of WTLOS in terms of USDT, where USDT is assumed to be $1
-    return usdtPair.token1Price // Return WTLOS price in USD (token1Price is WTLOS's price in USDT)
+    // token0Price is the price of WTLOS in terms of USDT, where USDT is assumed to be $1
+    return usdtPair.token0Price // Return WTLOS price in USD (token0Price is WTLOS's price in USDT)
   } else {
-    return ONE_BD // fallback if pair not found, though this should rarely happen
+    return ONE_BD // fallback if pair not found
   }
 }
 
