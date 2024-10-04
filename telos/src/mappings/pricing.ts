@@ -5,17 +5,17 @@ import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
 const WETH_ADDRESS = '0xd102ce6a4db07d247fcc28f366a623df0938ca9e' // WTLOS
-const USDT_WETH_PAIR = '0xc395fb127103e4d0a85f375a6b0f724fc99abccc' // USDT-WTELOS (USDT is token0)
+const USDT_WETH_PAIR = '0xc395fb127103e4d0a85f375a6b0f724fc99abccc' // USDT-WTLOS (USDT is token0)
 
 export function getEthPriceInUSD(): BigDecimal {
-  // fetch WTLOS prices using the USDT-WTLOS pair, where USDT is token0
-  let usdtPair = Pair.load(USDT_WETH_PAIR) // USDT is token0
+  // Load the USDT-WTLOS pair, where USDT is token0 and WTLOS is token1
+  let usdtPair = Pair.load(USDT_WETH_PAIR) // USDT is token0, WTLOS is token1
 
   if (usdtPair !== null) {
-    // Return the correct price of WTLOS (token1 in this case) in USD (USDT)
-    return usdtPair.token1Price // token1 is WTLOS, so return its price in USDT (token0)
+    // token1Price is the price of WTLOS in terms of USDT, where USDT is assumed to be $1
+    return usdtPair.token1Price // Return WTLOS price in USD (token1Price is WTLOS's price in USDT)
   } else {
-    return ONE_BD // fallback if pair is not found
+    return ONE_BD // fallback if pair not found, though this should rarely happen
   }
 }
 
@@ -39,11 +39,12 @@ let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('0')
  * @todo update to be derived WTLOS (add stablecoin estimates)
  **/
 export function findEthPerToken(token: Token): BigDecimal {
+  // If the token is WTLOS, return the derived price in USD (using the WTLOS-USDT pair)
   if (token.id == WETH_ADDRESS) {
-    return ONE_BD // WTLOS is considered 1 for native pricing
+    return getEthPriceInUSD() // WTLOS price should be derived from USDT
   }
-  
-  // loop through whitelist and check if paired with any
+
+  // Loop through the whitelist to find pairings and derive the price
   for (let i = 0; i < WHITELIST.length; ++i) {
     let pairAddress = factoryContract.getPair(Address.fromString(token.id), Address.fromString(WHITELIST[i]))
     if (pairAddress.toHexString() != ADDRESS_ZERO) {
@@ -52,24 +53,26 @@ export function findEthPerToken(token: Token): BigDecimal {
         continue
       }
 
+      // token0 is the queried token
       if (pair.token0 == token.id && pair.reserveETH.gt(MINIMUM_LIQUIDITY_THRESHOLD_ETH)) {
         let token1 = Token.load(pair.token1)
         if (token1 === null) {
           continue
         }
-        return pair.token0Price.times(token1.derivedETH as BigDecimal) // token0 price * Eth per token1
+        return pair.token0Price.times(token1.derivedETH as BigDecimal) // price of token0 * Eth per token1
       }
 
+      // token1 is the queried token
       if (pair.token1 == token.id && pair.reserveETH.gt(MINIMUM_LIQUIDITY_THRESHOLD_ETH)) {
         let token0 = Token.load(pair.token0)
         if (token0 === null) {
           continue
         }
-        return pair.token1Price.times(token0.derivedETH as BigDecimal) // token1 price * Eth per token0
+        return pair.token1Price.times(token0.derivedETH as BigDecimal) // price of token1 * Eth per token0
       }
     }
   }
-  return ZERO_BD // nothing was found return 0
+  return ZERO_BD // fallback in case no pair is found
 }
 
 /**
@@ -86,51 +89,34 @@ export function getTrackedVolumeUSD(
   pair: Pair,
 ): BigDecimal {
   let bundle = Bundle.load('1')!
-  let price0 = token0.derivedETH.times(bundle.ethPrice)
-  let price1 = token1.derivedETH.times(bundle.ethPrice)
+  let price0 = token0.derivedETH.times(bundle.ethPrice) // derived price for token0 in ETH
+  let price1 = token1.derivedETH.times(bundle.ethPrice) // derived price for token1 in ETH
 
   // don't count tracked volume on these pairs - usually rebass tokens
   if (UNTRACKED_PAIRS.includes(pair.id)) {
     return ZERO_BD
   }
 
-  // if less than 5 LPs, require high minimum reserve amount or return 0
-  if (pair.liquidityProviderCount.lt(BigInt.fromI32(5))) {
-    let reserve0USD = pair.reserve0.times(price0)
-    let reserve1USD = pair.reserve1.times(price1)
-    if (WHITELIST.includes(token0.id) && WHITELIST.includes(token1.id)) {
-      if (reserve0USD.plus(reserve1USD).lt(MINIMUM_USD_THRESHOLD_NEW_PAIRS)) {
-        return ZERO_BD
-      }
-    }
-    if (WHITELIST.includes(token0.id) && !WHITELIST.includes(token1.id)) {
-      if (reserve0USD.times(BigDecimal.fromString('2')).lt(MINIMUM_USD_THRESHOLD_NEW_PAIRS)) {
-        return ZERO_BD
-      }
-    }
-    if (!WHITELIST.includes(token0.id) && WHITELIST.includes(token1.id)) {
-      if (reserve1USD.times(BigDecimal.fromString('2')).lt(MINIMUM_USD_THRESHOLD_NEW_PAIRS)) {
-        return ZERO_BD
-      }
-    }
-  }
+  // Calculate reserve values in USD
+  let reserve0USD = pair.reserve0.times(price0)
+  let reserve1USD = pair.reserve1.times(price1)
 
-  // both are whitelist tokens, take average of both amounts
+  // Check if both tokens are whitelisted, and if so, average their USD values
   if (WHITELIST.includes(token0.id) && WHITELIST.includes(token1.id)) {
     return tokenAmount0.times(price0).plus(tokenAmount1.times(price1)).div(BigDecimal.fromString('2'))
   }
 
-  // take full value of the whitelisted token amount
+  // Handle the case where only token0 is whitelisted
   if (WHITELIST.includes(token0.id) && !WHITELIST.includes(token1.id)) {
     return tokenAmount0.times(price0)
   }
 
-  // take full value of the whitelisted token amount
+  // Handle the case where only token1 is whitelisted
   if (!WHITELIST.includes(token0.id) && WHITELIST.includes(token1.id)) {
     return tokenAmount1.times(price1)
   }
 
-  // neither token is on white list, tracked volume is 0
+  // Neither token is whitelisted, return 0
   return ZERO_BD
 }
 
