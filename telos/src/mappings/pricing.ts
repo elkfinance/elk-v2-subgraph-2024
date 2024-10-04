@@ -5,14 +5,14 @@ import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
 const WETH_ADDRESS = '0xd102ce6a4db07d247fcc28f366a623df0938ca9e'
-const USDT_WETH_PAIR = '0xc395fb127103e4d0a85f375a6b0f724fc99abccc'
+const USDT_WETH_PAIR = '0xc395fb127103e4d0a85f375a6b0f724fc99abccc' // USDT-WTELOS (USDT is token0 now)
 
 export function getEthPriceInUSD(): BigDecimal {
-  // fetch eth prices for each stablecoin
+  // fetch eth prices for each stablecoin, assuming USDT is token0
   let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token0
 
   if (usdtPair !== null) {
-    return usdtPair.token0Price
+    return usdtPair.token0Price // token0 is USDT
   } else {
     return ONE_BD
   }
@@ -54,14 +54,14 @@ export function findEthPerToken(token: Token): BigDecimal {
         if (token1 === null) {
           continue
         }
-        return pair.token1Price.times(token1.derivedETH as BigDecimal) // return token1 per our token * Eth per token 1
+        return pair.token0Price.times(token1.derivedETH as BigDecimal) // return token0 per our token * Eth per token 1
       }
       if (pair.token1 == token.id && pair.reserveETH.gt(MINIMUM_LIQUIDITY_THRESHOLD_ETH)) {
         let token0 = Token.load(pair.token0)
         if (token0 === null) {
           continue
         }
-        return pair.token0Price.times(token0.derivedETH as BigDecimal) // return token0 per our token * ETH per token 0
+        return pair.token1Price.times(token0.derivedETH as BigDecimal) // return token1 per our token * ETH per token 0
       }
     }
   }
