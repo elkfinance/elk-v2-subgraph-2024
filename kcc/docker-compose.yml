@@ -30,7 +30,7 @@ services:
   postgres:
     image: postgres
     ports:
-      - '80356:5432'
+      - '8036:5432'
     command:
       [
         "postgres",
