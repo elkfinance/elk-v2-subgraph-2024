@@ -19,7 +19,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: 'mainnet:https://199.rpc.thirdweb.com/${THIRDWEB_API_KEY}'
+      ethereum: 'mainnet:https://rpc.bt.io'
       GRAPH_LOG: info
   ipfs:
     image: ipfs/kubo:v0.17.0
