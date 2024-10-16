@@ -1,0 +1,41 @@
+{
+    "keywords": [
+        "elk",
+        "defi",
+        "bitgert"
+    ],
+    "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/bitgert/0x000000000000000000000000000000000000dead/logo.png",
+    "name": "Elk Bitgert Tokens",
+    "timestamp": "2023-07-02T17:42:41+00:00",
+    "tokens": [
+        {
+            "address": "0xeeeeeb57642040be42185f49c52f7e9b38f8eeee",
+            "chainId": 32520,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/bitgert/0xeeeeeb57642040be42185f49c52f7e9b38f8eeee/logo.png",
+            "name": "Elk",
+            "symbol": "ELK"
+        },
+        {
+            "address": "0x0eb9036cbe0f052386f36170c6b07ef0a0e3f710",
+            "chainId": 32520,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/bitgert/0x0eb9036cbe0f052386f36170c6b07ef0a0e3f710/logo.png",
+            "name": "Wrapped BRISE",
+            "symbol": "WBRISE"
+        },
+        {
+            "address": "0xb999ea90607a826a3e6e6646b404c3c7d11fa39d",
+            "chainId": 32520,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/bitgert/0xb999ea90607a826a3e6e6646b404c3c7d11fa39d/logo.png",
+            "name": "IceCream Token",
+            "symbol": "ICE"
+        }
+    ],
+    "version": {
+        "major": 54,
+        "minor": 2,
+        "patch": 0
+    }
+}
