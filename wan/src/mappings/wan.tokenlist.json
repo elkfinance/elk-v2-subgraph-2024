@@ -9,66 +9,66 @@
     "timestamp": "2023-07-02T17:42:41+00:00",
     "tokens": [
         {
-            "address": "0xeEeEEb57642040bE42185f49C52F7E9B38f8eeeE",
+            "address": "0xeeeeeb57642040be42185f49c52f7e9b38f8eeee",
             "chainId": 888,
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0xeEeEEb57642040bE42185f49C52F7E9B38f8eeeE/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0xeeeeeb57642040be42185f49c52f7e9b38f8eeee/logo.png",
             "name": "Elk",
             "symbol": "ELK"
         },
         {
-            "address": "0xdabD997aE5E4799BE47d6E69D9431615CBa28f48",
+            "address": "0xdabd997ae5e4799be47d6e69d9431615cba28f48",
             "chainId": 888,
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0xdabD997aE5E4799BE47d6E69D9431615CBa28f48/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0xdabd997ae5e4799be47d6e69d9431615cba28f48/logo.png",
             "name": "Wrapped WAN",
             "symbol": "WWAN"
         },
         {
-            "address": "0x52A9CEA01c4CBDd669883e41758B8eB8e8E2B34b",
+            "address": "0x52a9cea01c4cbdd669883e41758b8eb8e8e2b34b",
             "chainId": 888,
             "decimals": 6,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0x52A9CEA01c4CBDd669883e41758B8eB8e8E2B34b/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0x52a9cea01c4cbdd669883e41758b8eb8e8e2b34b/logo.png",
             "name": "Wan USDC",
             "symbol": "wanUSDC"
         },
         {
-            "address": "0x11e77E27Af5539872efEd10abaA0b408cfd9fBBD",
+            "address": "0x11e77e27af5539872efed10abaa0b408cfd9fbbd",
             "chainId": 888,
             "decimals": 6,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0x11e77E27Af5539872efEd10abaA0b408cfd9fBBD/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0x11e77e27af5539872efed10abaa0b408cfd9fbbd/logo.png",
             "name": "Wan USDT",
             "symbol": "wanUSDT"
         },
         {
-            "address": "0x50c439B6d602297252505a6799d84eA5928bCFb6",
+            "address": "0x50c439b6d602297252505a6799d84ea5928bcfb6",
             "chainId": 888,
             "decimals": 8,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0x50c439B6d602297252505a6799d84eA5928bCFb6/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0x50c439b6d602297252505a6799d84ea5928bcfb6/logo.png",
             "name": "Wan Wrapped BTC",
             "symbol": "wanBTC"
         },
         {
-            "address": "0xE3aE74D1518A76715aB4C7BeDF1af73893cd435A",
+            "address": "0xe3ae74d1518a76715ab4c7bedf1af73893cd435a",
             "chainId": 888,
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0xE3aE74D1518A76715aB4C7BeDF1af73893cd435A/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0xe3ae74d1518a76715ab4c7bedf1af73893cd435a/logo.png",
             "name": "Wan Wrapped Ether",
             "symbol": "wanETH"
         },
         {
-            "address": "0xB333721251961337F67bbBCAED514f9F284CE8E8",
+            "address": "0xb333721251961337f67bbbcaed514f9f284ce8e8",
             "chainId": 888,
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0xB333721251961337F67bbBCAED514f9F284CE8E8/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0xb333721251961337f67bbbcaed514f9f284ce8e8/logo.png",
             "name": "Wan Wrapped AVAX",
             "symbol": "wanAVAX"
         },
         {
-            "address": "0x6e11655d6aB3781C6613db8CB1Bc3deE9a7e111F",
+            "address": "0x6e11655d6ab3781c6613db8cb1bc3dee9a7e111f",
             "chainId": 888,
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0x6e11655d6aB3781C6613db8CB1Bc3deE9a7e111F/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/wan/0x6e11655d6ab3781c6613db8cb1bc3dee9a7e111f/logo.png",
             "name": "Zoo Token",
             "symbol": "ZOO"
         }
