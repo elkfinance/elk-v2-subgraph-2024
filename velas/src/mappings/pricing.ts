@@ -4,37 +4,15 @@ import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts/index'
 import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
-const WETH_ADDRESS = 'replace_WETH'
-const STABLE1_WETH_PAIR = 'replace_Stable1'
-const STABLE2_WETH_PAIR = 'replace_Stable2'
-const STABLE3_WETH_PAIR = 'replace_Stable3'
+const WETH_ADDRESS = '0xc579d1f3cf86749e05cd06f7ade17856c2ce3126'
+const USDT_WETH_PAIR = '0xc111c29a988ae0c0087d97b33c6e6766808a3bd3'
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let stable3Pair = Pair.load(STABLE3_WETH_PAIR) // stable3 is token1
-  let stable2Pair = Pair.load(STABLE2_WETH_PAIR) // stable2 is token1
-  let stable1Pair = Pair.load(STABLE1_WETH_PAIR) // stable1 is token1
+  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token0
 
-  // all 3 have been created
-  if (stable3Pair !== null && stable2Pair !== null && stable1Pair !== null) {
-    let totalLiquidityETH = stable3Pair.reserve0.plus(stable2Pair.reserve0).plus(stable1Pair.reserve0)
-    let stable3Weight = stable3Pair.reserve0.div(totalLiquidityETH)
-    let stable2Weight = stable2Pair.reserve0.div(totalLiquidityETH)
-    let stable1Weight = stable1Pair.reserve0.div(totalLiquidityETH)
-    return stable3Pair.token1Price.times(stable3Weight)
-      .plus(stable2Pair.token1Price.times(stable2Weight))
-      .plus(stable1Pair.token1Price.times(stable1Weight))
-    // stable3 and STABLE2 have been created
-  } else if (stable3Pair !== null && stable2Pair !== null) {
-    let totalLiquidityETH = stable3Pair.reserve0.plus(stable2Pair.reserve0)
-    let stable3Weight = stable3Pair.reserve0.div(totalLiquidityETH)
-    let stable2Weight = stable2Pair.reserve0.div(totalLiquidityETH)
-    return stable3Pair.token1Price.times(stable3Weight).plus(stable2Pair.token1Price.times(stable2Weight))
-    // STABLE2 is the only pair so far
-  } else if (stable2Pair !== null) {
-    return stable2Pair.token1Price
-  }  else if (stable1Pair !== null) {
-    return stable1Pair.token1Price
+  if (usdtPair !== null) {
+    return usdtPair.token0Price
   } else {
     return ONE_BD
   }
@@ -42,8 +20,12 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  WETH_ADDRESS, // WETH
-
+  WETH_ADDRESS, // WVLX
+  '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
+  '0x85219708c49aa701871ad330a94ea0f41dff24ca', // WETH
+  '0xc111c29a988ae0c0087d97b33c6e6766808a3bd3', // BUSD
+  '0x2b8e9cd44c9e09d936149549a8d207c918ecb5c4', // WBNB
+  '0x6ab0b8c1a35f9f4ce107ccbd05049cb1dbd99ec5', // WMATIC
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
