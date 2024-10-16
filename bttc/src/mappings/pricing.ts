@@ -1,18 +1,41 @@
 /* eslint-disable prefer-const */
 import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts/index'
-
 import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
-const WETH_ADDRESS = 'Replace_WETHADDRESS'
-const USDT_WETH_PAIR = 'Replace_USDTWETHPAIR'
+const WETH_ADDRESS = '0x8d193c6efa90bcff940a98785d1ce9d093d3dc8a'
+const STABLE1_WETH_PAIR = '0x0bed975de28c4409bce3c60b22c1ede9b7f8e61f'
+const STABLE2_WETH_PAIR = '0x4eaf45d6bfd68fef85150ffe3e409b431cfb29ba'
+const STABLE3_WETH_PAIR = '0x45628b2692ae4ed1c486addf30d7683888de9280'
+const STABLE4_WETH_PAIR = '0x4626f389143465238d0f3ee2edf08e5a6c6d2865'
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token1
+  let stable1Pair = Pair.load(STABLE1_WETH_PAIR) // USDC_t is token1
+  let stable2Pair = Pair.load(STABLE2_WETH_PAIR) // USDD_t is token0  
+  let stable3Pair = Pair.load(STABLE3_WETH_PAIR) // USDT_t is token1
+  let stable4Pair = Pair.load(STABLE4_WETH_PAIR) // USDT_b is token1
 
-  if (usdtPair !== null) {
-    return usdtPair.token1Price
+  // all 3 have been created
+  if (stable3Pair !== null && stable2Pair !== null && stable4Pair !== null) {
+    let totalLiquidityETH = stable3Pair.reserve0.plus(stable2Pair.reserve1).plus(stable4Pair.reserve0)
+    let stable3Weight = stable3Pair.reserve0.div(totalLiquidityETH)
+    let stable2Weight = stable2Pair.reserve1.div(totalLiquidityETH)
+    let stable4Weight = stable4Pair.reserve0.div(totalLiquidityETH)
+    return stable3Pair.token1Price.times(stable3Weight)
+      .plus(stable2Pair.token0Price.times(stable2Weight))
+      .plus(stable4Pair.token1Price.times(stable4Weight))
+    // dai and USDC have been created
+  } else if (stable3Pair !== null && stable2Pair !== null) {
+    let totalLiquidityETH = stable3Pair.reserve0.plus(stable2Pair.reserve1)
+    let stable3Weight = stable3Pair.reserve0.div(totalLiquidityETH)
+    let stable2Weight = stable2Pair.reserve1.div(totalLiquidityETH)
+    return stable3Pair.token1Price.times(stable3Weight).plus(stable2Pair.token0Price.times(stable2Weight))
+    // USDC is the only pair so far
+  } else if (stable2Pair !== null) {
+    return stable2Pair.token0Price
+  }  else if (stable1Pair !== null) {
+    return stable1Pair.token1Price
   } else {
     return ONE_BD
   }
@@ -20,11 +43,28 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  WETH_ADDRESS, // WETH
-  '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // elk
-  '0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c', // old_elk
-  '0xe1c8f3d529bea8e3fa1fac5b416335a2f998ee1c', // elk_legacy
-  'Replace_USDTADDRESS', // USDT
+  WETH_ADDRESS, // WBTT
+  '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
+  '0xcbb9edf6775e39748ea6483a7fa6a385cd7e9a4e', // BTT_b
+  '0x65676055e58b02e61272cedec6e5c6d56badfb86', // BTT_e
+  '0x9b5f27f6ea9bbd753ce3793a07cba3c74644330d', // USDT_b
+  '0xdb28719f7f938507dbfe4f0eae55668903d34a15', // USDT_t
+  '0xedf53026aea60f8f75fca25f8830b7e2d6200662', // TRX
+  '0x185a4091027e2db459a2433f85f894dc3013aeb5', // BNB
+  '0x1249c65afb11d179ffb3ce7d4eedd1d9b98ad006', // wETH
+  '0xa20dfb01dca223c0e52b0d4991d4afa7e08e3a50', // ETH_b
+  '0xca424b845497f7204d9301bd13ff87c0e2e86fcf', // USDC_b
+  '0x935faa2fcec6ab81265b301a30467bbc804b43d3', // USDC_t
+  '0xae17940943ba9440540940db0f1877f101d39e8b', // USDC_e
+  '0x17f235fd5974318e4e2a5e37919a209f7c37a6d1', // USDD_t
+  '0x74e7cef747db9c8752874321ba8b26119ef70c9e', // USDD_b
+  '0xb602f26bf29b83e4e1595244000e0111a9d39f62', // USDD_e
+  '0x17501034df227d8565a8c11f41df2418f5d403b6', // JST_t
+  '0x76accfb75b8bb7c6c295f04d19c1d184d274c853', // SUN_t
+  '0xde47772ac041a4ccf3c865632131d1093e51c02d', // BUSD_b
+  '0x1a7019909b10cdd2d8b0034293ad729f1c1f604e', // BTC_b
+  '0x9888221fe6b5a2ad4ce7266c7826d2ad74d40ccf', // WBTC_e
+  '0xe7dc549ae8db61bde71f22097becc8db542ca100', // DAI_e
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
