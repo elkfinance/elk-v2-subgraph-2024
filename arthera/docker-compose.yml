@@ -3,11 +3,11 @@ services:
   graph-node:
     image: graphprotocol/graph-node
     ports:
-      - '8050:8000'
-      - '8051:8001'
-      - '8052:8020'
-      - '8053:8030'
-      - '8054:8040'
+      - '8110:8000'
+      - '8111:8001'
+      - '8112:8020'
+      - '8113:8030'
+      - '8114:8040'
     depends_on:
       - ipfs
       - postgres
@@ -19,18 +19,18 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: 'mainnet:https://archival-rpc.bt.io'
+      ethereum: 'mainnet:https://rpc.arthera.net'
       GRAPH_LOG: info
   ipfs:
     image: ipfs/kubo:v0.17.0
     ports:
-      - '8055:5001'
+      - '8115:5001'
     volumes:
       - ./data/ipfs:/data/ipfs:Z
   postgres:
     image: postgres
     ports:
-      - '8056:5432'
+      - '8116:5432'
     command:
       [
         "postgres",
