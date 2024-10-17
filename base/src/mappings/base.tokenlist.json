@@ -1,0 +1,65 @@
+{
+    "keywords": [
+        "elk",
+        "defi",
+        "base"
+    ],
+    "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/base/0x0000000000000000000000000000000000000000/logo.png",
+    "name": "Elk Base Tokens",
+    "timestamp": "2023-07-02T17:42:41+00:00",
+    "tokens": [
+        {
+            "address": "0xeeeeeb57642040be42185f49c52f7e9b38f8eeee",
+            "chainId": 8453,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/base/0xeeeeeb57642040be42185f49c52f7e9b38f8eeee/logo.png",
+            "name": "Elk",
+            "symbol": "ELK"
+        },
+        {
+            "address": "0x4200000000000000000000000000000000000006",
+            "chainId": 8453,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/base/0x4200000000000000000000000000000000000006/logo.png",
+            "name": "Base Wrapped Ether",
+            "symbol": "WETH"
+        },
+        {
+            "address": "0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca",
+            "chainId": 8453,
+            "decimals": 6,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/base/0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca/logo.png",
+            "name": "USD Base Coin",
+            "symbol": "USDbC"
+        },
+        {
+            "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+            "chainId": 8453,
+            "decimals": 6,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/base/0x833589fcd6edb6e08f4c7c32d4f71b54bda02913/logo.png",
+            "name": "USD Coin",
+            "symbol": "USDC"
+        },
+        {
+            "address": "0x05f1938646a897008e813fb03ce7c575eae45738",
+            "chainId": 8453,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/base/0x05f1938646a897008e813fb03ce7c575eae45738/logo.png",
+            "name": "Project Ralph",
+            "symbol": "PR"
+        },
+        {
+            "address": "0x50c5725949a6f0c72e6c4a641f24049a917db0cb",
+            "chainId": 8453,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/base/0x50c5725949a6f0c72e6c4a641f24049a917db0cb/logo.png",
+            "name": "Dai Stablecoin",
+            "symbol": "DAI"
+        }
+    ],
+    "version": {
+        "major": 54,
+        "minor": 2,
+        "patch": 0
+    }
+}

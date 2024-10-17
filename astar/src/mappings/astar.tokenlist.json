@@ -1,0 +1,81 @@
+{
+    "keywords": [
+        "elk",
+        "defi",
+        "astar"
+    ],
+    "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/astar/0x0000000000000000000000000000000000000000/logo.png",
+    "name": "Elk Astar Tokens",
+    "timestamp": "2023-07-02T17:42:41+00:00",
+    "tokens": [
+        {
+            "address": "0xeeeeeb57642040be42185f49c52f7e9b38f8eeee",
+            "chainId": 592,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/astar/0xeeeeeb57642040be42185f49c52f7e9b38f8eeee/logo.png",
+            "name": "Elk",
+            "symbol": "ELK"
+        },
+        {
+            "address": "0xaeaaf0e2c81af264101b9129c00f4440ccf0f720",
+            "chainId": 592,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/astar/0xaeaaf0e2c81af264101b9129c00f4440ccf0f720/logo.png",
+            "name": "Wrapped Astar",
+            "symbol": "WASTR"
+        },
+        {
+            "address": "0x6a2d262d56735dba19dd70682b39f6be9a931d98",
+            "chainId": 592,
+            "decimals": 6,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/astar/0x6a2d262d56735dba19dd70682b39f6be9a931d98/logo.png",
+            "name": "Celer Bridged USDC",
+            "symbol": "ceUSDC"
+        },
+        {
+            "address": "0x3795c36e7d12a8c252a20c5a7b455f7c57b60283",
+            "chainId": 592,
+            "decimals": 6,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/astar/0x3795c36e7d12a8c252a20c5a7b455f7c57b60283/logo.png",
+            "name": "Celer Bridged USDT",
+            "symbol": "ceUSDT"
+        },
+        {
+            "address": "0x6de33698e9e9b787e09d3bd7771ef63557e148bb",
+            "chainId": 592,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/astar/0x6de33698e9e9b787e09d3bd7771ef63557e148bb/logo.png",
+            "name": "Celer Bridged DAI",
+            "symbol": "ceDAI"
+        },
+        {
+            "address": "0x4bf769b05e832fcdc9053fffbc78ca889acb5e1e",
+            "chainId": 592,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/astar/0x4bf769b05e832fcdc9053fffbc78ca889acb5e1e/logo.png",
+            "name": "Celer Bridged BUSD",
+            "symbol": "ceBUSD"
+        },
+        {
+            "address": "0x7f27352d5f83db87a5a3e00f4b07cc2138d8ee52",
+            "chainId": 592,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/astar/0x7f27352d5f83db87a5a3e00f4b07cc2138d8ee52/logo.png",
+            "name": "Celer Bridged BNB",
+            "symbol": "ceBNB"
+        },
+        {
+            "address": "0x81ecac0d6be0550a00ff064a4f9dd2400585fe9c",
+            "chainId": 592,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/astar/0x81ecac0d6be0550a00ff064a4f9dd2400585fe9c/logo.png",
+            "name": "Celer Bridged WETH",
+            "symbol": "ceWETH"
+        }
+    ],
+    "version": {
+        "major": 54,
+        "minor": 2,
+        "patch": 0
+    }
+}
