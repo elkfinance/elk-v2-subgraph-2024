@@ -1,8 +1,8 @@
 {
-  "replace_ChainORmainnet": {
+  "avalanche": {
     "Contract": {
       "address": "0x0000000000000000000000000000000000000000",
-      "startBlock": Replace_StartBlock
+      "startBlock": 659666
     }
   }
 }

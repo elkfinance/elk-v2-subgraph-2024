@@ -1,0 +1,57 @@
+{
+    "keywords": [
+        "elk",
+        "defi",
+        "arthera"
+    ],
+    "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/arthera/0x0000000000000000000000000000000000000000/logo.png",
+    "name": "Elk Arthera Tokens",
+    "timestamp": "2023-07-02T17:42:41+00:00",
+    "tokens": [
+        {
+            "address": "0xeEeEEb57642040bE42185f49C52F7E9B38f8eeeE",
+            "chainId": 10242,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/arthera/0xeEeEEb57642040bE42185f49C52F7E9B38f8eeeE/logo.png",
+            "name": "Elk",
+            "symbol": "ELK"
+        },
+        {
+            "address": "0x69D349E2009Af35206EFc3937BaD6817424729F7",
+            "chainId": 10242,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/arthera/0x69D349E2009Af35206EFc3937BaD6817424729F7/logo.png",
+            "name": "Wrapped AA",
+            "symbol": "WAA"
+        },
+        {
+            "address": "0x6C45E28A76977a96e263f84F95912B47F927B687",
+            "chainId": 10242,
+            "decimals": 6,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/arthera/0x6C45E28A76977a96e263f84F95912B47F927B687/logo.png",
+            "name": "Tether USD",
+            "symbol": "USDT"
+        },
+        {
+            "address": "0x8C4aCd74Ff4385f3B7911432FA6787Aa14406f8B",
+            "chainId": 10242,
+            "decimals": 6,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/arthera/0x8C4aCd74Ff4385f3B7911432FA6787Aa14406f8B/logo.png",
+            "name": "Bridged USDC",
+            "symbol": "USDC.e"
+        },
+        {
+            "address": "0x3df2B61C29459a4dC36062e616390860dbb14D78",
+            "chainId": 10242,
+            "decimals": 8,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/arthera/0x3df2B61C29459a4dC36062e616390860dbb14D78/logo.png",
+            "name": "BabyTuru",
+            "symbol": "BBT"
+        }
+    ],
+    "version": {
+        "major": 54,
+        "minor": 2,
+        "patch": 0
+    }
+}

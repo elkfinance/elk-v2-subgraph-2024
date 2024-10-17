@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Block
-    network: replace_ChainORmainnet # Change this to your network (e.g., mainnet, telos)
+    network: avalanche # Change this to your network (e.g., mainnet, telos)
     source:
       address: "0x0000000000000000000000000000000000000000" # No specific contract address
       abi: Block
-      startBlock: replace_startblock
+      startBlock: 659666
     mapping:
       kind: ethereum/block
       apiVersion: 0.0.6
