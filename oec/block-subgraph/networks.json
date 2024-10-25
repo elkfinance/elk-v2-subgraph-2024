@@ -1,0 +1,8 @@
+{
+  "replace_ChainORmainnet": {
+    "Contract": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "startBlock": Replace_StartBlock
+    }
+  }
+}
