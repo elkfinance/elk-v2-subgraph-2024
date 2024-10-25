@@ -2,6 +2,7 @@ version: '3'
 services:
   graph-node:
     image: graphprotocol/graph-node
+    restart: unless-stopped
     ports:
       - '8090:8000'
       - '8091:8001'
@@ -23,12 +24,14 @@ services:
       GRAPH_LOG: info
   ipfs:
     image: ipfs/kubo:v0.17.0
+    restart: unless-stopped
     ports:
       - '8095:5001'
     volumes:
       - ./data/ipfs:/data/ipfs:Z
   postgres:
     image: postgres
+    restart: unless-stopped
     ports:
       - '8096:5432'
     command:
