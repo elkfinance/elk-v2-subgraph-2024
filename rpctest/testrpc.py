@@ -37,8 +37,8 @@ def test_subgraph_rpc_capability(rpc_url, block_number, contract_address, retrie
     return False
 
 # Example usage
-rpc_url = "https://astar.public.blastapi.io"  # Replace with your RPC URL
-block_number = 4121763  # The block number where the first pair was created
+rpc_url = "https://exchainrpc.okex.org/"  # Replace with your RPC URL
+block_number = 6310720  # The block number where the first pair was created
 contract_address = "0xeEeEEb57642040bE42185f49C52F7E9B38f8eeeE"  # Replace with a token contract address in the 1st pair
 
 if test_subgraph_rpc_capability(rpc_url, block_number, contract_address):

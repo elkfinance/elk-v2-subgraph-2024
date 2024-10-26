@@ -4,11 +4,11 @@ services:
     image: graphprotocol/graph-node
     restart: unless-stopped
     ports:
-      - 'Replace_8000:8000'
-      - 'Replace_8001:8001'
-      - 'Replace_8002:8020'
-      - 'Replace_8003:8030'
-      - 'Replace_8004:8040'
+      - '8130:8000'
+      - '8131:8001'
+      - '8132:8020'
+      - '8133:8030'
+      - '8134:8040'
     depends_on:
       - ipfs
       - postgres
@@ -20,20 +20,20 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: 'mainnet:Replace_RPC'
+      ethereum: 'mainnet:https://exchainrpc.okex.org'
       GRAPH_LOG: info
   ipfs:
     image: ipfs/kubo:v0.17.0
     restart: unless-stopped
     ports:
-      - 'Replace_8005:5001'
+      - '8135:5001'
     volumes:
       - ./data/ipfs:/data/ipfs:Z
   postgres:
     image: postgres:16
     restart: unless-stopped
     ports:
-      - 'Replace_8006:5432'
+      - '8136:5432'
     command:
       [
         "postgres",

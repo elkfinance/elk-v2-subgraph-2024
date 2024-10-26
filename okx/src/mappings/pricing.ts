@@ -4,15 +4,37 @@ import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts/index'
 import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
-const WETH_ADDRESS = 'Replace_WETHADDRESS'
-const USDT_WETH_PAIR = 'Replace_USDTWETHPAIR'
+const WETH_ADDRESS = '0x8f8526dbfd6e38e3d8307702ca8469bae6c56c15'
+const STABLE1_WETH_PAIR = '0xbd0fc5a13e65065efe2525420a147c91ad59a229' //USDT is token 0
+const STABLE2_WETH_PAIR = '0x33effee6e54929fa03770fb5c6708c60c3408c8d' // USDC is token 1
+const STABLE3_WETH_PAIR = '0xc81f2313fb7544a252d667173a9f5a30593c24d4' //BUSD is token 0
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token1
+  let stable3Pair = Pair.load(STABLE3_WETH_PAIR) // stable3 is token0
+  let stable2Pair = Pair.load(STABLE2_WETH_PAIR) // stable2 is token1
+  let stable1Pair = Pair.load(STABLE1_WETH_PAIR) // stable1 is token0
 
-  if (usdtPair !== null) {
-    return usdtPair.token1Price
+  // all 3 have been created
+  if (stable3Pair !== null && stable2Pair !== null && stable1Pair !== null) {
+    let totalLiquidityETH = stable3Pair.reserve1.plus(stable2Pair.reserve1).plus(stable1Pair.reserve1)
+    let stable3Weight = stable3Pair.reserve1.div(totalLiquidityETH)
+    let stable2Weight = stable2Pair.reserve0.div(totalLiquidityETH)
+    let stable1Weight = stable1Pair.reserve1.div(totalLiquidityETH)
+    return stable3Pair.token0Price.times(stable3Weight)
+      .plus(stable2Pair.token1Price.times(stable2Weight))
+      .plus(stable1Pair.token0Price.times(stable1Weight))
+    // stable3 and STABLE2 have been created
+  } else if (stable3Pair !== null && stable2Pair !== null) {
+    let totalLiquidityETH = stable3Pair.reserve1.plus(stable2Pair.reserve0)
+    let stable3Weight = stable3Pair.reserve1.div(totalLiquidityETH)
+    let stable2Weight = stable2Pair.reserve0.div(totalLiquidityETH)
+    return stable3Pair.token0Price.times(stable3Weight).plus(stable2Pair.token1Price.times(stable2Weight))
+    // STABLE2 is the only pair so far
+  } else if (stable2Pair !== null) {
+    return stable2Pair.token1Price
+  }  else if (stable1Pair !== null) {
+    return stable1Pair.token0Price
   } else {
     return ONE_BD
   }
