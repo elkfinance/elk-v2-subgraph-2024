@@ -1,0 +1,137 @@
+{
+    "keywords": [
+        "elk",
+        "defi",
+        "moonriver"
+    ],
+    "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0x98878b06940ae243284ca214f92bb71a2b032b8a/logo.png",
+    "name": "Elk MOONRIVER Tokens",
+    "timestamp": "2023-07-02T17:42:41+00:00",
+    "tokens": [
+        {
+            "address": "0xeeeeeb57642040be42185f49c52f7e9b38f8eeee",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0xeeeeeb57642040be42185f49c52f7e9b38f8eeee/logo.png",
+            "name": "Elk",
+            "symbol": "ELK"
+        },
+        {
+            "address": "0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c/logo.png",
+            "name": "Old Elk",
+            "symbol": "oELK"
+        },
+        {
+            "address": "0x6bd193ee6d2104f14f94e2ca6efefae561a4334b",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0x6bd193ee6d2104f14f94e2ca6efefae561a4334b/logo.png",
+            "name": "Solarbeam Token",
+            "symbol": "SOLAR"
+        },
+        {
+            "address": "0x98878b06940ae243284ca214f92bb71a2b032b8a",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0x98878b06940ae243284ca214f92bb71a2b032b8a/logo.png",
+            "name": "Wrapped MOVR",
+            "symbol": "WMOVR"
+        },
+        {
+            "address": "0xbd90a6125a84e5c512129d622a75cdde176ade5e",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0xbd90a6125a84e5c512129d622a75cdde176ade5e/logo.png",
+            "name": "RiverBoat",
+            "symbol": "RIB"
+        },
+        {
+            "address": "0x480cd4fa911eeeff93cb11135c97237455617862",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0x480cd4fa911eeeff93cb11135c97237455617862/logo.png",
+            "name": "KusaMOON",
+            "symbol": "KMOON"
+        },
+        {
+            "address": "0xc2392dd3e3fed2c8ed9f7f0bdf6026fcd1348453",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0xc2392dd3e3fed2c8ed9f7f0bdf6026fcd1348453/logo.png",
+            "name": "MoonBeans",
+            "symbol": "BEANS"
+        },
+        {
+            "address": "0x65e66a61d0a8f1e686c2d6083ad611a10d84d97a",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0x65e66a61d0a8f1e686c2d6083ad611a10d84d97a/logo.png",
+            "name": "Laika Protocol",
+            "symbol": "LAIKA"
+        },
+        {
+            "address": "0x52f04c806eb82930f40d410259b7af8e18d3bdc9",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0x52f04c806eb82930f40d410259b7af8e18d3bdc9/logo.png",
+            "name": "MoonKafe",
+            "symbol": "KAFE"
+        },
+        {
+            "address": "0x3516a7588c2e6ffa66c9507ef51853eb85d76e5b",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0x3516a7588c2e6ffa66c9507ef51853eb85d76e5b/logo.png",
+            "name": "1SWAP",
+            "symbol": "1SWAP"
+        },
+        {
+            "address": "0xad12dab5959f30b9ff3c2d6709f53c335dc39908",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0xad12dab5959f30b9ff3c2d6709f53c335dc39908/logo.png",
+            "name": "Wrapped Fantom Token",
+            "symbol": "WFTM"
+        },
+        {
+            "address": "0x0cae51e1032e8461f4806e26332c030e34de3adb",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0x0cae51e1032e8461f4806e26332c030e34de3adb/logo.png",
+            "name": "Magic Internet Money",
+            "symbol": "MIM"
+        },
+        {
+            "address": "0x15b9ca9659f5dff2b7d35a98dd0790a3cbb3d445",
+            "chainId": 1285,
+            "decimals": 10,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0x15b9ca9659f5dff2b7d35a98dd0790a3cbb3d445/logo.png",
+            "name": "DOT",
+            "symbol": "DOT.m"
+        },
+        {
+            "address": "0xfb2019dfd635a03cfff624d210aee6af2b00fc2c",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0xfb2019dfd635a03cfff624d210aee6af2b00fc2c/logo.png",
+            "name": "MmiMatic",
+            "symbol": "MAI"
+        },
+        {
+            "address": "0x1a93b23281cc1cde4c4741353f3064709a16197d",
+            "chainId": 1285,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/moonriver/0x1a93b23281cc1cde4c4741353f3064709a16197d/logo.png",
+            "name": "FRAX",
+            "symbol": "FRAX"
+        }
+    ],
+    "version": {
+        "major": 55,
+        "minor": 0,
+        "patch": 0
+    }
+}

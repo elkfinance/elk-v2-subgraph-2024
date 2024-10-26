@@ -1,0 +1,233 @@
+{
+    "keywords": [
+        "elk",
+        "defi",
+        "harmony"
+    ],
+    "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xcf664087a5bb0237a0bad6742852ec6c8d69a27a/logo.png",
+    "name": "Elk HARMONY Tokens",
+    "timestamp": "2023-07-02T17:42:41+00:00",
+    "tokens": [
+        {
+            "address": "0xeeeeeb57642040be42185f49c52f7e9b38f8eeee",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xeeeeeb57642040be42185f49c52f7e9b38f8eeee/logo.png",
+            "name": "Elk",
+            "symbol": "ELK"
+        },
+        {
+            "address": "0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c/logo.png",
+            "name": "Old Elk",
+            "symbol": "oELK"
+        },
+        {
+            "address": "0x58f1b044d8308812881a1433d9bbeff99975e70c",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x58f1b044d8308812881a1433d9bbeff99975e70c/logo.png",
+            "name": "1INCH Token",
+            "symbol": "1INCH"
+        },
+        {
+            "address": "0xcf323aad9e522b93f11c352caa519ad0e14eb40f",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xcf323aad9e522b93f11c352caa519ad0e14eb40f/logo.png",
+            "name": "Aave Token",
+            "symbol": "AAVE"
+        },
+        {
+            "address": "0xdc5f76104d0b8d2bf2c2bbe06cdfe17004e9010f",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xdc5f76104d0b8d2bf2c2bbe06cdfe17004e9010f/logo.png",
+            "name": "Balancer",
+            "symbol": "BAL"
+        },
+        {
+            "address": "0x32137b9275ea35162812883582623cd6f6950958",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x32137b9275ea35162812883582623cd6f6950958/logo.png",
+            "name": "Compound",
+            "symbol": "COMP"
+        },
+        {
+            "address": "0x5c99f47e749d2fb9f6002a2945df5ea3f7162dfe",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x5c99f47e749d2fb9f6002a2945df5ea3f7162dfe/logo.png",
+            "name": "Cream",
+            "symbol": "CREAM"
+        },
+        {
+            "address": "0x352cd428efd6f31b5cae636928b7b84149cf369f",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x352cd428efd6f31b5cae636928b7b84149cf369f/logo.png",
+            "name": "Curve DAO Token",
+            "symbol": "CRV"
+        },
+        {
+            "address": "0x34704c70e9ec9fb9a921da6daad7d3e19f43c734",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x34704c70e9ec9fb9a921da6daad7d3e19f43c734/logo.png",
+            "name": "DSLA",
+            "symbol": "DSLA"
+        },
+        {
+            "address": "0x301259f392b551ca8c592c9f676fcd2f9a0a84c5",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x301259f392b551ca8c592c9f676fcd2f9a0a84c5/logo.png",
+            "name": "Matic Token",
+            "symbol": "MATIC"
+        },
+        {
+            "address": "0x7b9c523d59aefd362247bd5601a89722e3774dd2",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x7b9c523d59aefd362247bd5601a89722e3774dd2/logo.png",
+            "name": "Synthetix Network Token",
+            "symbol": "SNX"
+        },
+        {
+            "address": "0xbec775cb42abfa4288de81f387a9b1a3c4bc552a",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xbec775cb42abfa4288de81f387a9b1a3c4bc552a/logo.png",
+            "name": "SushiToken",
+            "symbol": "SUSHI"
+        },
+        {
+            "address": "0x50ae1aba372b836523c982d8ce88e89aa8a92863",
+            "chainId": 1666600000,
+            "decimals": 2,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x50ae1aba372b836523c982d8ce88e89aa8a92863/logo.png",
+            "name": "Telcoin",
+            "symbol": "TEL"
+        },
+        {
+            "address": "0x90d81749da8867962c760414c1c25ec926e889b6",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x90d81749da8867962c760414c1c25ec926e889b6/logo.png",
+            "name": "Uniswap",
+            "symbol": "UNI"
+        },
+        {
+            "address": "0x9a89d0e1b051640c6704dde4df881f73adfef39a",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x9a89d0e1b051640c6704dde4df881f73adfef39a/logo.png",
+            "name": "LayerZero Wrapped Tether USD from BNB Chain",
+            "symbol": "bscUSDT"
+        },
+        {
+            "address": "0xe7e3c4d1cfc722b45a428736845b6aff862842a1",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xe7e3c4d1cfc722b45a428736845b6aff862842a1/logo.png",
+            "name": "Wise Token",
+            "symbol": "WISE"
+        },
+        {
+            "address": "0xa7a22299918828d791240f9ec310c2e066592053",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xa7a22299918828d791240f9ec310c2e066592053/logo.png",
+            "name": "xSUSHI",
+            "symbol": "xSUSHI"
+        },
+        {
+            "address": "0xa0dc05f84a27fccbd341305839019ab86576bc07",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xa0dc05f84a27fccbd341305839019ab86576bc07/logo.png",
+            "name": "yearn.finance",
+            "symbol": "YFI"
+        },
+        {
+            "address": "0x2f459dd7cbcc9d8323621f6fb430cd0555411e7b",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x2f459dd7cbcc9d8323621f6fb430cd0555411e7b/logo.png",
+            "name": "TokenJenny",
+            "symbol": "JENN"
+        },
+        {
+            "address": "0x218532a12a389a4a92fc0c5fb22901d1c19198aa",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x218532a12a389a4a92fc0c5fb22901d1c19198aa/logo.png",
+            "name": "ChainLink Token",
+            "symbol": "LINK"
+        },
+        {
+            "address": "0x95ce547d730519a90def30d647f37d9e5359b6ae",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x95ce547d730519a90def30d647f37d9e5359b6ae/logo.png",
+            "name": "Wrapped LUNA Token",
+            "symbol": "LUNA"
+        },
+        {
+            "address": "0x224e64ec1bdce3870a6a6c777edd450454068fec",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x224e64ec1bdce3870a6a6c777edd450454068fec/logo.png",
+            "name": "Wrapped UST Token",
+            "symbol": "UST"
+        },
+        {
+            "address": "0xb8e0497018c991e86311b64efd9d57b06aedbbae",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xb8e0497018c991e86311b64efd9d57b06aedbbae/logo.png",
+            "name": "DaVinci Token",
+            "symbol": "VINCI"
+        },
+        {
+            "address": "0xea589e93ff18b1a1f1e9bac7ef3e86ab62addc79",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xea589e93ff18b1a1f1e9bac7ef3e86ab62addc79/logo.png",
+            "name": "Viper",
+            "symbol": "VIPER"
+        },
+        {
+            "address": "0xcf664087a5bb0237a0bad6742852ec6c8d69a27a",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xcf664087a5bb0237a0bad6742852ec6c8d69a27a/logo.png",
+            "name": "Wrapped ONE",
+            "symbol": "WONE"
+        },
+        {
+            "address": "0xe064a68994e9380250cfee3e8c0e2ac5c0924548",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0xe064a68994e9380250cfee3e8c0e2ac5c0924548/logo.png",
+            "name": "xVIPER",
+            "symbol": "xVIPER"
+        },
+        {
+            "address": "0x3f56e0c36d275367b8c502090edf38289b3dea0d",
+            "chainId": 1666600000,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/harmony/0x3f56e0c36d275367b8c502090edf38289b3dea0d/logo.png",
+            "name": "miMatic",
+            "symbol": "MAI"
+        }
+    ],
+    "version": {
+        "major": 55,
+        "minor": 0,
+        "patch": 0
+    }
+}

@@ -20,7 +20,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: 'mainnet:https://astar.public.blastapi.io'
+      ethereum: 'mainnet:https://evm.astar.network'
       GRAPH_LOG: info
   ipfs:
     image: ipfs/kubo:v0.17.0
