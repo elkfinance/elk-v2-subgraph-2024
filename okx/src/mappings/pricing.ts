@@ -43,7 +43,34 @@ export function getEthPriceInUSD(): BigDecimal {
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
   WETH_ADDRESS, // WETH
-
+  '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
+  '0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c', // oELK
+  '0x8eac9d49f71a9393ed38a619038e880c86d5745c', // PND
+  '0xdf54b6c6195ea4d948d03bfd818d365cf175cfc2', // OKB
+  '0x54e4622dc504176b3bb432dccaf504569699a7ff', // BTCK
+  '0xef71ca2ee68f45b9ad6f72fbdb33d707b872315c', // ETHK
+  '0x8f8526dbfd6e38e3d8307702ca8469bae6c56c15', // WOKT
+  '0x382bb369d343125bfb2117af9c149795c6c65c50', // USDT
+  '0xdcac52e001f5bd413aa6ea83956438f29098166b', // USDK
+  '0xc946daf81b08146b1c7a8da2a851ddf2b3eaaf85', // USDC
+  '0xabc732f6f69a519f6d508434481376b6221eb7d5', // DOTK
+  '0x3f8969be2fc0770dcc174968e4b4ff146e0acdaf', // FILK
+  '0xfa520efc34c81bfc1e3dd48b7fe9ff326049f986', // LTCK
+  '0x18d103b7066aeedb6005b78a462ef9027329b1ea', // BCHK
+  '0x00505505a7576d6734704fabb16f41924e3e384b', // TRXK
+  '0xaa27badaa3c9ec9081b8f6c9cdd2bf375f143780', // SHIBK
+  '0x218c3c3d49d0e7b37aff0d8bb079de36ae61a4c0', // WBNB
+  '0x79b627bc95fa5b36eca53eb39c3cdf43aafdd10f', // ORG
+  '0x332730a4f6e03d9c55829435f10360e13cfa41ff', // BUSD
+  '0x97513e975a7fa9072c72c92d8000b0db90b163c5', // BabyDoge
+  '0xc3bdfee6186849d5509601045af4af567a001c94', // Glory
+  '0x6b7a87899490ece95443e979ca9485cbe7e71522', // HERO
+  '0x748def2e7fbb37111761aa78260b0ce71e41d4ca', // COCO
+  '0x03d1e72765545729a035e909edd9371a405f77fb', // nHUSD
+  '0xacd7b3d9c10e97d0efa418903c0c7669e702e4c0', // ELE
+  '0x02f093513b7872cdfc518e51ed67f88f0e469592', // OKFly
+  '0x5ab622494ab7c5e81911558c9552dbd517f403fb', // CELT
+  '0xa07403c1bd0c5cf53df07f15faa589241352527b', // BLADE
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
