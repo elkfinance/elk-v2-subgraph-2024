@@ -9,50 +9,50 @@
     "timestamp": "2023-07-02T17:42:41+00:00",
     "tokens": [
         {
-            "address": "0xeEeEEb57642040bE42185f49C52F7E9B38f8eeeE",
+            "address": "0xeeeeeb57642040be42185f49c52f7e9b38f8eeee",
             "chainId": 106,
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/velas/0xeEeEEb57642040bE42185f49C52F7E9B38f8eeeE/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/velas/0xeeeeeb57642040be42185f49c52f7e9b38f8eeee/logo.png",
             "name": "Elk",
             "symbol": "ELK"
         },
         {
-            "address": "0xc579D1f3CF86749E05CD06f7ADe17856c2CE3126",
+            "address": "0xc579d1f3cf86749e05cd06f7ade17856c2ce3126",
             "chainId": 106,
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/velas/0xc579D1f3CF86749E05CD06f7ADe17856c2CE3126/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/velas/0xc579d1f3cf86749e05cd06f7ade17856c2ce3126/logo.png",
             "name": "Wrapped VLX",
             "symbol": "WVLX"
         },
         {
-            "address": "0x85219708c49aa701871Ad330A94EA0f41dFf24Ca",
+            "address": "0x85219708c49aa701871ad330a94ea0f41dff24ca",
             "chainId": 106,
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/velas/0x85219708c49aa701871Ad330A94EA0f41dFf24Ca/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/velas/0x85219708c49aa701871ad330a94ea0f41dff24ca/logo.png",
             "name": "Velas Wrapped Ether",
             "symbol": "WETH"
         },
         {
-            "address": "0xc111c29A988AE0C0087D97b33C6E6766808A3BD3",
+            "address": "0xc111c29a988ae0c0087d97b33c6e6766808a3bd3",
             "chainId": 106,
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/velas/0xc111c29A988AE0C0087D97b33C6E6766808A3BD3/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/velas/0xc111c29a988ae0c0087d97b33c6e6766808a3bd3/logo.png",
             "name": "MultiChain Labs BUSD",
             "symbol": "BUSD"
         },
         {
-            "address": "0x2B8e9cD44C9e09D936149549a8d207c918ecB5C4",
+            "address": "0x2b8e9cd44c9e09d936149549a8d207c918ecb5c4",
             "chainId": 106,
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/velas/0x2B8e9cD44C9e09D936149549a8d207c918ecB5C4/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/velas/0x2b8e9cd44c9e09d936149549a8d207c918ecb5c4/logo.png",
             "name": "Velas BNB",
             "symbol": "WBNB"
         },
         {
-            "address": "0x6ab0B8C1a35F9F4Ce107cCBd05049CB1Dbd99Ec5",
+            "address": "0x6ab0b8c1a35f9f4ce107ccbd05049cb1dbd99ec5",
             "chainId": 106,
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/velas/0x6ab0B8C1a35F9F4Ce107cCBd05049CB1Dbd99Ec5/logo.png",
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/velas/0x6ab0b8c1a35f9f4ce107ccbd05049cb1dbd99ec5/logo.png",
             "name": "Velas MATIC",
             "symbol": "WMATIC"
         }

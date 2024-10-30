@@ -5,7 +5,7 @@ import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
 const WETH_ADDRESS = '0xc579d1f3cf86749e05cd06f7ade17856c2ce3126'
-const USDT_WETH_PAIR = '0xc111c29a988ae0c0087d97b33c6e6766808a3bd3'
+const USDT_WETH_PAIR = '0x43ce85271237d27ec4944bebb65acd8b38a2cbe9'
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
@@ -22,6 +22,12 @@ export function getEthPriceInUSD(): BigDecimal {
 let WHITELIST: string[] = [
   WETH_ADDRESS, // WVLX
   '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
+  '0x85219708c49aa701871ad330a94ea0f41dff24ca', // WETH
+  '0xc111c29a988ae0c0087d97b33c6e6766808a3bd3', // BUSD
+  '0x2b8e9cd44c9e09d936149549a8d207c918ecb5c4', // WBNB
+  '0x6ab0b8c1a35f9f4ce107ccbd05049cb1dbd99ec5', // WMATIC
+  '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
+  '0xc579d1f3cf86749e05cd06f7ade17856c2ce3126', // WVLX
   '0x85219708c49aa701871ad330a94ea0f41dff24ca', // WETH
   '0xc111c29a988ae0c0087d97b33c6e6766808a3bd3', // BUSD
   '0x2b8e9cd44c9e09d936149549a8d207c918ecb5c4', // WBNB
