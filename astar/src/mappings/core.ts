@@ -192,116 +192,86 @@ export function handleTransfer(event: Transfer): void {
 }
 
 export function handleSync(event: Sync): void {
-  let pair: Pair | null;
-  let token0: Token | null;
-  let token1: Token | null;
-  let elkdex: ElkFactory | null;
-  let bundle: Bundle | null;
-
-  try {
-    pair = Pair.load(event.address.toHex());
-    if (pair === null) {
-      log.warning("Failed to load pair at block {}", [event.block.number.toString()]);
-      return;
-    }
-
-    token0 = Token.load(pair.token0);
-    token1 = Token.load(pair.token1);
-    if (token0 === null || token1 === null) {
-      log.warning("Failed to load tokens for pair at block {}", [event.block.number.toString()]);
-      return;
-    }
-
-    elkdex = ElkFactory.load(FACTORY_ADDRESS);
-    if (elkdex === null) {
-      log.warning("Failed to load ElkFactory at block {}", [event.block.number.toString()]);
-      return;
-    }
-
-    // Reset factory liquidity by subtracting only tracked liquidity
-    elkdex.totalLiquidityETH = elkdex.totalLiquidityETH.minus(pair.trackedReserveETH as BigDecimal);
-
-    // Reset token total liquidity amounts
-    token0.totalLiquidity = token0.totalLiquidity.minus(pair.reserve0);
-    token1.totalLiquidity = token1.totalLiquidity.minus(pair.reserve1);
-
-    // Update reserves with error handling
-    pair.reserve0 = convertTokenToDecimal(event.params.reserve0, token0.decimals);
-    pair.reserve1 = convertTokenToDecimal(event.params.reserve1, token1.decimals);
-
-    if (pair.reserve1.notEqual(ZERO_BD)) {
-      pair.token0Price = pair.reserve0.div(pair.reserve1);
-    } else {
-      pair.token0Price = ZERO_BD;
-    }
-
-    if (pair.reserve0.notEqual(ZERO_BD)) {
-      pair.token1Price = pair.reserve1.div(pair.reserve0);
-    } else {
-      pair.token1Price = ZERO_BD;
-    }
-
-    pair.save();
-  } catch (error) {
-    log.warning("Error updating reserves or pair prices at block {}: {}", [
-      event.block.number.toString(),
-      error.toString(),
-    ]);
+  let pair = Pair.load(event.address.toHex());
+  if (pair === null) {
+    log.warning("Failed to load pair at block {}", [event.block.number.toString()]);
     return;
   }
 
-  try {
-    // Update ETH price now that reserves could have changed
-    bundle = Bundle.load("1");
-    if (bundle === null) {
-      log.warning("Failed to load Bundle at block {}", [event.block.number.toString()]);
-      return;
-    }
-
-    bundle.ethPrice = getEthPriceInUSD();
-    bundle.save();
-
-    token0.derivedETH = findEthPerToken(token0 as Token);
-    token1.derivedETH = findEthPerToken(token1 as Token);
-    token0.save();
-    token1.save();
-
-    // Calculate tracked liquidity
-    let trackedLiquidityETH: BigDecimal;
-    if (bundle.ethPrice.notEqual(ZERO_BD)) {
-      trackedLiquidityETH = getTrackedLiquidityUSD(pair.reserve0, token0 as Token, pair.reserve1, token1 as Token).div(
-        bundle.ethPrice,
-      );
-    } else {
-      trackedLiquidityETH = ZERO_BD;
-    }
-
-    pair.trackedReserveETH = trackedLiquidityETH;
-    pair.reserveETH = pair.reserve0
-      .times(token0.derivedETH as BigDecimal)
-      .plus(pair.reserve1.times(token1.derivedETH as BigDecimal));
-    pair.reserveUSD = pair.reserveETH.times(bundle.ethPrice);
-
-    elkdex.totalLiquidityETH = elkdex.totalLiquidityETH.plus(trackedLiquidityETH);
-    elkdex.totalLiquidityUSD = elkdex.totalLiquidityETH.times(bundle.ethPrice);
-
-    token0.totalLiquidity = token0.totalLiquidity.plus(pair.reserve0);
-    token1.totalLiquidity = token1.totalLiquidity.plus(pair.reserve1);
-
-    // Save entities
-    pair.save();
-    elkdex.save();
-    token0.save();
-    token1.save();
-  } catch (error) {
-    log.warning("Error updating tracked liquidity or saving entities at block {}: {}", [
-      event.block.number.toString(),
-      error.toString(),
-    ]);
+  let token0 = Token.load(pair.token0);
+  let token1 = Token.load(pair.token1);
+  if (token0 === null || token1 === null) {
+    log.warning("Failed to load tokens for pair at block {}", [event.block.number.toString()]);
     return;
   }
+
+  let elkdex = ElkFactory.load(FACTORY_ADDRESS);
+  if (elkdex === null) {
+    log.warning("Failed to load ElkFactory at block {}", [event.block.number.toString()]);
+    return;
+  }
+
+  // Reset factory liquidity by subtracting only tracked liquidity
+  elkdex.totalLiquidityETH = elkdex.totalLiquidityETH.minus(pair.trackedReserveETH as BigDecimal);
+
+  // Reset token total liquidity amounts
+  token0.totalLiquidity = token0.totalLiquidity.minus(pair.reserve0);
+  token1.totalLiquidity = token1.totalLiquidity.minus(pair.reserve1);
+
+  // Update reserves and prices
+  pair.reserve0 = convertTokenToDecimal(event.params.reserve0, token0.decimals);
+  pair.reserve1 = convertTokenToDecimal(event.params.reserve1, token1.decimals);
+
+  pair.token0Price = pair.reserve1.notEqual(ZERO_BD) ? pair.reserve0.div(pair.reserve1) : ZERO_BD;
+  pair.token1Price = pair.reserve0.notEqual(ZERO_BD) ? pair.reserve1.div(pair.reserve0) : ZERO_BD;
+
+  pair.save();
+
+  // Update ETH price now that reserves could have changed
+  let bundle = Bundle.load("1");
+  if (bundle === null) {
+    log.warning("Failed to load Bundle at block {}", [event.block.number.toString()]);
+    return;
+  }
+
+  bundle.ethPrice = getEthPriceInUSD();
+  bundle.save();
+
+  token0.derivedETH = findEthPerToken(token0 as Token);
+  token1.derivedETH = findEthPerToken(token1 as Token);
+  token0.save();
+  token1.save();
+
+  // Calculate tracked liquidity
+  let trackedLiquidityETH: BigDecimal;
+  if (bundle.ethPrice.notEqual(ZERO_BD)) {
+    trackedLiquidityETH = getTrackedLiquidityUSD(pair.reserve0, token0 as Token, pair.reserve1, token1 as Token).div(
+      bundle.ethPrice,
+    );
+  } else {
+    trackedLiquidityETH = ZERO_BD;
+  }
+
+  // Update liquidity values for the pair and globally
+  pair.trackedReserveETH = trackedLiquidityETH;
+  pair.reserveETH = pair.reserve0
+    .times(token0.derivedETH as BigDecimal)
+    .plus(pair.reserve1.times(token1.derivedETH as BigDecimal));
+  pair.reserveUSD = pair.reserveETH.times(bundle.ethPrice);
+
+  elkdex.totalLiquidityETH = elkdex.totalLiquidityETH.plus(trackedLiquidityETH);
+  elkdex.totalLiquidityUSD = elkdex.totalLiquidityETH.times(bundle.ethPrice);
+
+  // Update token liquidity values
+  token0.totalLiquidity = token0.totalLiquidity.plus(pair.reserve0);
+  token1.totalLiquidity = token1.totalLiquidity.plus(pair.reserve1);
+
+  // Save entities
+  pair.save();
+  elkdex.save();
+  token0.save();
+  token1.save();
 }
-
 
 export function handleMint(event: Mint): void {
   // loaded from a previous handler creating this transaction
