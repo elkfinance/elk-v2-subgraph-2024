@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import { BigDecimal, BigInt, store } from '@graphprotocol/graph-ts'
-import { log } from "@graphprotocol/graph-ts";
+import { BigInt, log } from "@graphprotocol/graph-ts";
 
 import {
   Bundle,
@@ -191,37 +191,44 @@ export function handleTransfer(event: Transfer): void {
   transaction.save()
 }
 
-import { BigInt, log } from "@graphprotocol/graph-ts";
-
-// Create a global variable to store block attempts
-let blockAttempts = new Map<string, i32>();
+// Global variable to store block failure counts
+let blockFailureCounts = new Map<string, i32>();
+const MAX_RETRIES = 2;
 
 export function handleSync(event: Sync): void {
   let blockNumber = event.block.number.toString();
 
-  // Check if this block has been processed multiple times
-  let attempts = blockAttempts.has(blockNumber) ? blockAttempts.get(blockNumber) as i32 : 0;
-  attempts += 1;
-
-  // If block has been encountered more than twice, skip processing it
-  if (attempts > 2) {
-    log.warning("Skipping block {} due to repeated errors.", [blockNumber]);
+  // Check the failure count for this block and skip if exceeded
+  let failures = blockFailureCounts.has(blockNumber) ? blockFailureCounts.get(blockNumber) as i32 : 0;
+  if (failures >= MAX_RETRIES) {
+    log.warning("Skipping block {} after {} failures.", [blockNumber, failures.toString()]);
     return;
   }
 
-  // Store the incremented attempts count back to the map
-  blockAttempts.set(blockNumber, attempts);
-
-  // Try loading required entities
+  // Attempt to load the Pair entity
   let pair = Pair.load(event.address.toHex());
-  if (!pair) return;
+  if (pair === null) {
+    log.warning("Failed to load Pair for block {}.", [blockNumber]);
+    blockFailureCounts.set(blockNumber, failures + 1);
+    return;
+  }
 
+  // Attempt to load Token entities
   let token0 = Token.load(pair.token0);
   let token1 = Token.load(pair.token1);
-  if (!token0 || !token1) return;
+  if (token0 === null || token1 === null) {
+    log.warning("Failed to load Tokens for block {}.", [blockNumber]);
+    blockFailureCounts.set(blockNumber, failures + 1);
+    return;
+  }
 
+  // Attempt to load the ElkFactory entity
   let elkdex = ElkFactory.load(FACTORY_ADDRESS);
-  if (!elkdex) return;
+  if (elkdex === null) {
+    log.warning("Failed to load ElkFactory for block {}.", [blockNumber]);
+    blockFailureCounts.set(blockNumber, failures + 1);
+    return;
+  }
 
   // Reset factory liquidity by subtracting only tracked liquidity
   elkdex.totalLiquidityETH = elkdex.totalLiquidityETH.minus(pair.trackedReserveETH as BigDecimal);
@@ -238,9 +245,13 @@ export function handleSync(event: Sync): void {
   pair.token1Price = pair.reserve0.notEqual(ZERO_BD) ? pair.reserve1.div(pair.reserve0) : ZERO_BD;
   pair.save();
 
-  // Load or initialize bundle entity
+  // Attempt to load the Bundle entity
   let bundle = Bundle.load("1");
-  if (!bundle) return;
+  if (bundle === null) {
+    log.warning("Failed to load Bundle for block {}.", [blockNumber]);
+    blockFailureCounts.set(blockNumber, failures + 1);
+    return;
+  }
 
   // Update ETH price now that reserves could have changed
   bundle.ethPrice = getEthPriceInUSD();
@@ -267,10 +278,14 @@ export function handleSync(event: Sync): void {
   token0.totalLiquidity = token0.totalLiquidity.plus(pair.reserve0);
   token1.totalLiquidity = token1.totalLiquidity.plus(pair.reserve1);
 
+  // Save entities
   pair.save();
   elkdex.save();
   token0.save();
   token1.save();
+
+  // Reset failure count for successful processing
+  blockFailureCounts.set(blockNumber, 0);
 }
 
 export function handleMint(event: Mint): void {
