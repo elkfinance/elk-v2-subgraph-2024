@@ -1,6 +1,5 @@
 /* eslint-disable prefer-const */
 import { BigDecimal, BigInt, store } from '@graphprotocol/graph-ts'
-import { BigInt, log } from "@graphprotocol/graph-ts";
 
 import {
   Bundle,
@@ -192,30 +191,13 @@ export function handleTransfer(event: Transfer): void {
 }
 
 export function handleSync(event: Sync): void {
-  // Define the block range you want to skip
-  const skipStartBlock = BigInt.fromI32(4595473); // starting block number
-  const skipEndBlock = BigInt.fromI32(4680000);   // ending block number
-
-  // Check if the current block is within the specified range
-  if (event.block.number >= skipStartBlock && event.block.number <= skipEndBlock) {
-    // Log a message and return early to skip processing
-    log.warning("Skipping block range {} to {} at block {}", [
-      skipStartBlock.toString(),
-      skipEndBlock.toString(),
-      event.block.number.toString(),
-    ]);
-    return;
-  }
-
-  // Rest of the handleSync function code here (unchanged)
-  // Example:
-  let pair = Pair.load(event.address.toHex())!;
-  let token0 = Token.load(pair.token0);
-  let token1 = Token.load(pair.token1);
+  let pair = Pair.load(event.address.toHex())!
+  let token0 = Token.load(pair.token0)
+  let token1 = Token.load(pair.token1)
   if (token0 === null || token1 === null) {
-    return;
+    return
   }
-  let elkdex = ElkFactory.load(FACTORY_ADDRESS)!;
+  let elkdex = ElkFactory.load(FACTORY_ADDRESS)!
 
   // reset factory liquidity by subtracting onluy tarcked liquidity
   elkdex.totalLiquidityETH = elkdex.totalLiquidityETH.minus(pair.trackedReserveETH as BigDecimal)
