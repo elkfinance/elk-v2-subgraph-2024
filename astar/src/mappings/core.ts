@@ -191,101 +191,102 @@ export function handleTransfer(event: Transfer): void {
   transaction.save()
 }
 
-// Global variable to store block failure counts
-let blockFailureCounts = new Map<string, i32>();
+// Global map to store permanently skipped blocks
+let permanentlySkippedBlocks = new Map<string, boolean>();
 const MAX_RETRIES = 2;
 
 export function handleSync(event: Sync): void {
   let blockNumber = event.block.number.toString();
 
-  // Check the failure count for this block and skip if exceeded
-  let failures = blockFailureCounts.has(blockNumber) ? blockFailureCounts.get(blockNumber) as i32 : 0;
-  if (failures >= MAX_RETRIES) {
-    log.warning("Skipping block {} after {} failures.", [blockNumber, failures.toString()]);
+  // Check if the block has already been permanently skipped
+  if (permanentlySkippedBlocks.has(blockNumber)) {
+    log.warning("Permanently skipping problematic block {}", [blockNumber]);
     return;
   }
 
-  // Attempt to load the Pair entity
-  let pair = Pair.load(event.address.toHex());
-  if (pair === null) {
-    log.warning("Failed to load Pair for block {}.", [blockNumber]);
-    blockFailureCounts.set(blockNumber, failures + 1);
+  // Local variable to track retries for this block
+  let retryCount = 0;
+
+  while (retryCount <= MAX_RETRIES) {
+    // Attempt to load essential entities with inline failure checks
+    let pair = Pair.load(event.address.toHex());
+    if (pair === null) {
+      log.warning("Failed to load Pair for block {}. Retry #{}", [blockNumber, retryCount.toString()]);
+      retryCount++;
+      continue; // Skip to the next retry attempt
+    }
+
+    let token0 = Token.load(pair.token0);
+    let token1 = Token.load(pair.token1);
+    if (token0 === null || token1 === null) {
+      log.warning("Failed to load Tokens for block {}. Retry #{}", [blockNumber, retryCount.toString()]);
+      retryCount++;
+      continue;
+    }
+
+    let elkdex = ElkFactory.load(FACTORY_ADDRESS);
+    if (elkdex === null) {
+      log.warning("Failed to load ElkFactory for block {}. Retry #{}", [blockNumber, retryCount.toString()]);
+      retryCount++;
+      continue;
+    }
+
+    // Processing logic with inline error handling
+    elkdex.totalLiquidityETH = elkdex.totalLiquidityETH.minus(pair.trackedReserveETH as BigDecimal);
+    token0.totalLiquidity = token0.totalLiquidity.minus(pair.reserve0);
+    token1.totalLiquidity = token1.totalLiquidity.minus(pair.reserve1);
+
+    // Update reserves
+    pair.reserve0 = convertTokenToDecimal(event.params.reserve0, token0.decimals);
+    pair.reserve1 = convertTokenToDecimal(event.params.reserve1, token1.decimals);
+
+    pair.token0Price = pair.reserve1.notEqual(ZERO_BD) ? pair.reserve0.div(pair.reserve1) : ZERO_BD;
+    pair.token1Price = pair.reserve0.notEqual(ZERO_BD) ? pair.reserve1.div(pair.reserve0) : ZERO_BD;
+    pair.save();
+
+    let bundle = Bundle.load("1");
+    if (bundle === null) {
+      log.warning("Failed to load Bundle for block {}. Retry #{}", [blockNumber, retryCount.toString()]);
+      retryCount++;
+      continue;
+    }
+
+    bundle.ethPrice = getEthPriceInUSD();
+    bundle.save();
+
+    token0.derivedETH = findEthPerToken(token0 as Token);
+    token1.derivedETH = findEthPerToken(token1 as Token);
+    token0.save();
+    token1.save();
+
+    let trackedLiquidityETH: BigDecimal;
+    trackedLiquidityETH = bundle.ethPrice.notEqual(ZERO_BD)
+      ? getTrackedLiquidityUSD(pair.reserve0, token0 as Token, pair.reserve1, token1 as Token).div(bundle.ethPrice)
+      : ZERO_BD;
+
+    pair.trackedReserveETH = trackedLiquidityETH;
+    pair.reserveETH = pair.reserve0.times(token0.derivedETH as BigDecimal).plus(pair.reserve1.times(token1.derivedETH as BigDecimal));
+    pair.reserveUSD = pair.reserveETH.times(bundle.ethPrice);
+
+    elkdex.totalLiquidityETH = elkdex.totalLiquidityETH.plus(trackedLiquidityETH);
+    elkdex.totalLiquidityUSD = elkdex.totalLiquidityETH.times(bundle.ethPrice);
+
+    token0.totalLiquidity = token0.totalLiquidity.plus(pair.reserve0);
+    token1.totalLiquidity = token1.totalLiquidity.plus(pair.reserve1);
+
+    // Save entities after successful processing
+    pair.save();
+    elkdex.save();
+    token0.save();
+    token1.save();
+
+    // Successful processing, reset retry count and return
     return;
   }
 
-  // Attempt to load Token entities
-  let token0 = Token.load(pair.token0);
-  let token1 = Token.load(pair.token1);
-  if (token0 === null || token1 === null) {
-    log.warning("Failed to load Tokens for block {}.", [blockNumber]);
-    blockFailureCounts.set(blockNumber, failures + 1);
-    return;
-  }
-
-  // Attempt to load the ElkFactory entity
-  let elkdex = ElkFactory.load(FACTORY_ADDRESS);
-  if (elkdex === null) {
-    log.warning("Failed to load ElkFactory for block {}.", [blockNumber]);
-    blockFailureCounts.set(blockNumber, failures + 1);
-    return;
-  }
-
-  // Reset factory liquidity by subtracting only tracked liquidity
-  elkdex.totalLiquidityETH = elkdex.totalLiquidityETH.minus(pair.trackedReserveETH as BigDecimal);
-
-  // Reset token total liquidity amounts
-  token0.totalLiquidity = token0.totalLiquidity.minus(pair.reserve0);
-  token1.totalLiquidity = token1.totalLiquidity.minus(pair.reserve1);
-
-  // Update reserves
-  pair.reserve0 = convertTokenToDecimal(event.params.reserve0, token0.decimals);
-  pair.reserve1 = convertTokenToDecimal(event.params.reserve1, token1.decimals);
-
-  pair.token0Price = pair.reserve1.notEqual(ZERO_BD) ? pair.reserve0.div(pair.reserve1) : ZERO_BD;
-  pair.token1Price = pair.reserve0.notEqual(ZERO_BD) ? pair.reserve1.div(pair.reserve0) : ZERO_BD;
-  pair.save();
-
-  // Attempt to load the Bundle entity
-  let bundle = Bundle.load("1");
-  if (bundle === null) {
-    log.warning("Failed to load Bundle for block {}.", [blockNumber]);
-    blockFailureCounts.set(blockNumber, failures + 1);
-    return;
-  }
-
-  // Update ETH price now that reserves could have changed
-  bundle.ethPrice = getEthPriceInUSD();
-  bundle.save();
-
-  token0.derivedETH = findEthPerToken(token0 as Token);
-  token1.derivedETH = findEthPerToken(token1 as Token);
-  token0.save();
-  token1.save();
-
-  // Calculate tracked liquidity
-  let trackedLiquidityETH: BigDecimal;
-  trackedLiquidityETH = bundle.ethPrice.notEqual(ZERO_BD)
-    ? getTrackedLiquidityUSD(pair.reserve0, token0 as Token, pair.reserve1, token1 as Token).div(bundle.ethPrice)
-    : ZERO_BD;
-
-  pair.trackedReserveETH = trackedLiquidityETH;
-  pair.reserveETH = pair.reserve0.times(token0.derivedETH as BigDecimal).plus(pair.reserve1.times(token1.derivedETH as BigDecimal));
-  pair.reserveUSD = pair.reserveETH.times(bundle.ethPrice);
-
-  elkdex.totalLiquidityETH = elkdex.totalLiquidityETH.plus(trackedLiquidityETH);
-  elkdex.totalLiquidityUSD = elkdex.totalLiquidityETH.times(bundle.ethPrice);
-
-  token0.totalLiquidity = token0.totalLiquidity.plus(pair.reserve0);
-  token1.totalLiquidity = token1.totalLiquidity.plus(pair.reserve1);
-
-  // Save entities
-  pair.save();
-  elkdex.save();
-  token0.save();
-  token1.save();
-
-  // Reset failure count for successful processing
-  blockFailureCounts.set(blockNumber, 0);
+  // If we exceed MAX_RETRIES, permanently skip this block
+  log.warning("Permanently marking block {} as skipped after exceeding retries", [blockNumber]);
+  permanentlySkippedBlocks.set(blockNumber, true);
 }
 
 export function handleMint(event: Mint): void {
