@@ -192,6 +192,21 @@ export function handleTransfer(event: Transfer): void {
 }
 
 export function handleSync(event: Sync): void {
+
+    // Define the block range you want to skip
+    const skipStartBlock = BigInt.fromI32(4594743); // starting block number
+    const skipEndBlock = BigInt.fromI32(4631473);   // ending block number
+  
+    // Check if the current block is within the specified range
+    if (event.block.number >= skipStartBlock && event.block.number <= skipEndBlock) {
+      // Log a message and return early to skip processing
+      log.warning("Skipping block range {} to {} at block {}", [
+        skipStartBlock.toString(),
+        skipEndBlock.toString(),
+        event.block.number.toString(),
+      ]);
+      return;
+    }
   let pair = Pair.load(event.address.toHex());
   if (pair === null) {
     log.warning("Failed to load Pair at block {}", [event.block.number.toString()]);
