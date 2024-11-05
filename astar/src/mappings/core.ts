@@ -192,7 +192,9 @@ export function handleTransfer(event: Transfer): void {
 
 export function handleSync(event: Sync): void {
     // Skip the problematic block
-    if (event.block.number == BigInt.fromI32(4631473)) {
+    if (event.block.number == BigInt.fromI32(4594743) || 
+        event.block.number == BigInt.fromI32(4631473)
+    ) {
       return;
     }
   let pair = Pair.load(event.address.toHex())!
