@@ -22,6 +22,7 @@ services:
       ipfs: 'ipfs:5001'
       ethereum: 'mainnet:https://evm.astar.network'
       GRAPH_LOG: info
+      GRAPH_ETHEREUM_MAX_BLOCK_RANGE: 500
   ipfs:
     image: ipfs/kubo:v0.17.0
     restart: unless-stopped
