@@ -22,7 +22,8 @@ services:
       ipfs: 'ipfs:5001'
       ethereum: 'mainnet:https://evm.astar.network?range_size=500'
       GRAPH_LOG: info
-      ETHEREUM_MAX_BLOCK_RANGE: 500
+      ETHEREUM_MAX_BLOCK_RANGE: '500'  # Ensure this is set
+      GRAPH_ETHEREUM_MAX_BLOCK_RANGE: '500'  # Alternative method
   ipfs:
     image: ipfs/kubo:v0.17.0
     restart: unless-stopped
