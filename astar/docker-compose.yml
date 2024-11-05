@@ -20,7 +20,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: 'mainnet:https://evm.astar.network'
+      ethereum: 'mainnet:https://evm.astar.network?range_size=500'
       GRAPH_LOG: info
       ETHEREUM_MAX_BLOCK_RANGE: 500
   ipfs:
