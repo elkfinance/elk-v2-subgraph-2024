@@ -25,6 +25,10 @@ let WHITELIST: string[] = [
   '0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c', // old_elk
   '0xe1c8f3d529bea8e3fa1fac5b416335a2f998ee1c', // elk_legacy
   '0xef213441a85df4d7acbdae0cf78004e1e486bb96', // rusdt
+  '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
+  '0x542fda317318ebf1d3deaf76e0b632741a7e677d', // WRBTC
+  '0xef213441a85df4d7acbdae0cf78004e1e486bb96', // rUSDT
+  '0xe700691da7b9851f2f35f8b8182c69c53ccad9db', // DOC
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
