@@ -1,0 +1,233 @@
+{
+    "keywords": [
+        "elk",
+        "defi",
+        "iotex"
+    ],
+    "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0xa00744882684c3e4747faefd68d283ea44099d03/logo.png",
+    "name": "Elk IOTEX Tokens",
+    "timestamp": "2023-07-02T17:42:41+00:00",
+    "tokens": [
+        {
+            "address": "0xeeeeeb57642040be42185f49c52f7e9b38f8eeee",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0xeeeeeb57642040be42185f49c52f7e9b38f8eeee/logo.png",
+            "name": "Elk",
+            "symbol": "ELK"
+        },
+        {
+            "address": "0xe1ce1c0fa22ec693baca6f5076bcdc4d0183de1c",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c/logo.png",
+            "name": "Old Elk",
+            "symbol": "oELK"
+        },
+        {
+            "address": "0xb8744ae4032be5e5ef9fab94ee9c3bf38d5d2ae0",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0xb8744ae4032be5e5ef9fab94ee9c3bf38d5d2ae0/logo.png",
+            "name": "Vitality",
+            "symbol": "VITA"
+        },
+        {
+            "address": "0x0258866edaf84d6081df17660357ab20a07d0c80",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x0258866edaf84d6081df17660357ab20a07d0c80/logo.png",
+            "name": "ioETH",
+            "symbol": "ioETH"
+        },
+        {
+            "address": "0x2a6003e4b618ff3457a4a2080d028b0249b51c80",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x2a6003e4b618ff3457a4a2080d028b0249b51c80/logo.png",
+            "name": "Paxos Gold",
+            "symbol": "PAXG"
+        },
+        {
+            "address": "0xacee9b11cd4b3f57e58880277ac72c8c41abe4e4",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0xacee9b11cd4b3f57e58880277ac72c8c41abe4e4/logo.png",
+            "name": "Binance USD",
+            "symbol": "BUSD"
+        },
+        {
+            "address": "0xc7b93720f73b037394ce00f954f849ed484a3dea",
+            "chainId": 4689,
+            "decimals": 8,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0xc7b93720f73b037394ce00f954f849ed484a3dea/logo.png",
+            "name": "Wrapped Bitcoin",
+            "symbol": "WBTC"
+        },
+        {
+            "address": "0xedeefaca6a1581fe2349cdfc3083d4efa8188e55",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0xedeefaca6a1581fe2349cdfc3083d4efa8188e55/logo.png",
+            "name": "UNISWAP",
+            "symbol": "UNI"
+        },
+        {
+            "address": "0x4752456e00def6025c77b55a88a2f8a1701f92f9",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x4752456e00def6025c77b55a88a2f8a1701f92f9/logo.png",
+            "name": "Metanyx",
+            "symbol": "METX"
+        },
+        {
+            "address": "0x888a47d81844376cbde6737bfc702a10a2175f97",
+            "chainId": 4689,
+            "decimals": 8,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x888a47d81844376cbde6737bfc702a10a2175f97/logo.png",
+            "name": "SonicDiamond",
+            "symbol": "SDI"
+        },
+        {
+            "address": "0x4d7b88403aa2f502bf289584160db01ca442426c",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x4d7b88403aa2f502bf289584160db01ca442426c/logo.png",
+            "name": "Cyclone Protocol",
+            "symbol": "CYC"
+        },
+        {
+            "address": "0x17df9fbfc1cdab0f90eddc318c4f6fcada730cf2",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x17df9fbfc1cdab0f90eddc318c4f6fcada730cf2/logo.png",
+            "name": "GameFantasyToken",
+            "symbol": "GFT"
+        },
+        {
+            "address": "0x84abcb2832be606341a50128aeb1db43aa017449",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x84abcb2832be606341a50128aeb1db43aa017449/logo.png",
+            "name": "BUSD",
+            "symbol": "BUSDb"
+        },
+        {
+            "address": "0xa00744882684c3e4747faefd68d283ea44099d03",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0xa00744882684c3e4747faefd68d283ea44099d03/logo.png",
+            "name": "Wrapped IoTeX",
+            "symbol": "WIOTX"
+        },
+        {
+            "address": "0x9178f4ec8a7ff6fe08e848eeac3ddbe1a5fac70d",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x9178f4ec8a7ff6fe08e848eeac3ddbe1a5fac70d/logo.png",
+            "name": "UP",
+            "symbol": "UP"
+        },
+        {
+            "address": "0x97e6c48867fdc391a8dfe9d169ecd005d1d90283",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x97e6c48867fdc391a8dfe9d169ecd005d1d90283/logo.png",
+            "name": "Wrapped Binance Coin",
+            "symbol": "WBNB"
+        },
+        {
+            "address": "0x8e66c0d6b70c0b23d39f4b21a1eac52bba8ed89a",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x8e66c0d6b70c0b23d39f4b21a1eac52bba8ed89a/logo.png",
+            "name": "Wrapped MATIC",
+            "symbol": "WMATIC"
+        },
+        {
+            "address": "0x62a9d987cbf4c45a550deed5b57b200d7a319632",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x62a9d987cbf4c45a550deed5b57b200d7a319632/logo.png",
+            "name": "Matic DAI Stablecoin",
+            "symbol": "DAIm"
+        },
+        {
+            "address": "0x3cdb7c48e70b854ed2fa392e21687501d84b3afc",
+            "chainId": 4689,
+            "decimals": 6,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x3cdb7c48e70b854ed2fa392e21687501d84b3afc/logo.png",
+            "name": "Matic Tether USD",
+            "symbol": "USDTm"
+        },
+        {
+            "address": "0x5d0f4ca481fd725c9bc6b415c0ce5b3c3bd726cf",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x5d0f4ca481fd725c9bc6b415c0ce5b3c3bd726cf/logo.png",
+            "name": "GameFantasyStar",
+            "symbol": "GFS"
+        },
+        {
+            "address": "0x99b2b0efb56e62e36960c20cd5ca8ec6abd5557a",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x99b2b0efb56e62e36960c20cd5ca8ec6abd5557a/logo.png",
+            "name": "Crosschain IOTX",
+            "symbol": "CIOTX"
+        },
+        {
+            "address": "0x490cfbf9b9c43633ddd1968d062996227ef438a9",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x490cfbf9b9c43633ddd1968d062996227ef438a9/logo.png",
+            "name": "iMAGICToken",
+            "symbol": "iMAGIC"
+        },
+        {
+            "address": "0x6fbcdc1169b5130c59e72e51ed68a84841c98cd1",
+            "chainId": 4689,
+            "decimals": 6,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x6fbcdc1169b5130c59e72e51ed68a84841c98cd1/logo.png",
+            "name": "Tether USDT",
+            "symbol": "USDT"
+        },
+        {
+            "address": "0x3b2bf2b523f54c4e454f08aa286d03115aff326c",
+            "chainId": 4689,
+            "decimals": 6,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x3b2bf2b523f54c4e454f08aa286d03115aff326c/logo.png",
+            "name": "USD Coin",
+            "symbol": "USDC"
+        },
+        {
+            "address": "0x1cbad85aa66ff3c12dc84c5881886eeb29c1bb9b",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x1cbad85aa66ff3c12dc84c5881886eeb29c1bb9b/logo.png",
+            "name": "DAI",
+            "symbol": "DAI"
+        },
+        {
+            "address": "0x86702a7f8898b172de396eb304d7d81207127915",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x86702a7f8898b172de396eb304d7d81207127915/logo.png",
+            "name": "ZOOM TOKEN",
+            "symbol": "ZOOM"
+        },
+        {
+            "address": "0x32085b8ea854529178bd0f4e92d3fd2475a3a159",
+            "chainId": 4689,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/elkfinance/tokens/main/logos/iotex/0x32085b8ea854529178bd0f4e92d3fd2475a3a159/logo.png",
+            "name": "FilDA",
+            "symbol": "FILDA"
+        }
+    ],
+    "version": {
+        "major": 55,
+        "minor": 2,
+        "patch": 1
+    }
+}

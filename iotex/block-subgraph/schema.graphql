@@ -1,0 +1,7 @@
+type Block @entity {
+  id: ID! # The block hash will be used as the unique ID
+  number: BigInt!
+  timestamp: BigInt!
+  hash: Bytes!
+}
+
