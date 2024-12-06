@@ -20,8 +20,7 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  WETH_ADDRESS, // WETH
-
+  WETH_ADDRESS, // WIOTX
   '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
   '0xe1ce1c0fa22ec693baca6f5076bcdc4d0183de1c', // oELK
   '0xb8744ae4032be5e5ef9fab94ee9c3bf38d5d2ae0', // VITA
@@ -35,7 +34,6 @@ let WHITELIST: string[] = [
   '0x4d7b88403aa2f502bf289584160db01ca442426c', // CYC
   '0x17df9fbfc1cdab0f90eddc318c4f6fcada730cf2', // GFT
   '0x84abcb2832be606341a50128aeb1db43aa017449', // BUSDb
-  '0xa00744882684c3e4747faefd68d283ea44099d03', // WIOTX
   '0x9178f4ec8a7ff6fe08e848eeac3ddbe1a5fac70d', // UP
   '0x97e6c48867fdc391a8dfe9d169ecd005d1d90283', // WBNB
   '0x8e66c0d6b70c0b23d39f4b21a1eac52bba8ed89a', // WMATIC

@@ -4,9 +4,9 @@ import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts/index'
 import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
-const WETH_ADDRESS = '0xc7a183ad373301d68f7e0ee824c8c727c7d5b21d'
-const STABLE1_WETH_PAIR = '0xe57f140a39906e0e980d62d5031f03cf16d2d15b'
-const STABLE2_WETH_PAIR = '0x5ceb22c13da3a86f3a332746404170a84719d3ca'
+const WETH_ADDRESS = 'replace_WETH'
+const STABLE1_WETH_PAIR = 'replace_Stable1'
+const STABLE2_WETH_PAIR = 'replace_Stable2'
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
@@ -35,10 +35,6 @@ export function getEthPriceInUSD(): BigDecimal {
 let WHITELIST: string[] = [
   WETH_ADDRESS, // WETH
 
-  '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
-  '0x69d349e2009af35206efc3937bad6817424729f7', // WAA
-  '0x6c45e28a76977a96e263f84f95912b47f927b687', // USDT
-  '0x8c4acd74ff4385f3b7911432fa6787aa14406f8b', // USDC.e
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
