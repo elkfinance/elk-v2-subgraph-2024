@@ -35,9 +35,11 @@ export function getEthPriceInUSD(): BigDecimal {
 let WHITELIST: string[] = [
   WETH_ADDRESS, // WETH
   '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
+  '0x69d349e2009af35206efc3937bad6817424729f7', // WAA
   '0x6c45e28a76977a96e263f84f95912b47f927b687', // USDT
   '0x8c4acd74ff4385f3b7911432fa6787aa14406f8b', // USDC.e
-  '0x05f1938646a897008e813fb03ce7c575eae45738', // PR
+  '0x3df2b61c29459a4dc36062e616390860dbb14d78', // BBT
+  '0xbea7d44bb5627533a54dfd3ca131fd7e323d1f29', // BEAT
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
