@@ -194,7 +194,9 @@ export function handleSync(event: Sync): void {
   // Define an array of problematic blocks
   let problematicBlocks: Array<string> = [
     "17000270",
-    "17000507" // Add more block numbers as needed
+    "17000507",
+    "17000595",
+    "17000797" // Add more block numbers as needed
   ];
 
   // Get the block number as a string for comparison

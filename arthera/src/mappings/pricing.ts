@@ -5,40 +5,27 @@ import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
 const WETH_ADDRESS = '0x69d349e2009af35206efc3937bad6817424729f7'
-const STABLE1_WETH_PAIR = '0xe57f140a39906e0e980d62d5031f03cf16d2d15b'
-const STABLE2_WETH_PAIR = '0x5ceb22c13da3a86f3a332746404170a84719d3ca'
+const USDT_WETH_PAIR = '0xe57f140a39906e0e980d62d5031f03cf16d2d15b'
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let stable2Pair = Pair.load(STABLE2_WETH_PAIR) // stable2 is token1
-  let stable1Pair = Pair.load(STABLE1_WETH_PAIR) // stable1 is token1
+  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token1
 
-  // both pairs have been created
-  if (stable2Pair !== null && stable1Pair !== null) {
-    let totalLiquidityETH = stable2Pair.reserve0.plus(stable1Pair.reserve0)
-    let stable2Weight = stable2Pair.reserve0.div(totalLiquidityETH)
-    let stable1Weight = stable1Pair.reserve0.div(totalLiquidityETH)
-    return stable2Pair.token1Price.times(stable2Weight).plus(stable1Pair.token1Price.times(stable1Weight))
-    // only STABLE2 is available
-  } else if (stable2Pair !== null) {
-    return stable2Pair.token1Price
-    // only STABLE1 is available
-  } else if (stable1Pair !== null) {
-    return stable1Pair.token1Price
+  if (usdtPair !== null) {
+    return usdtPair.token1Price
   } else {
     return ONE_BD
   }
 }
 
-
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  WETH_ADDRESS, // WETH
-
+  WETH_ADDRESS, // WAA
   '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
   '0x69d349e2009af35206efc3937bad6817424729f7', // WAA
   '0x6c45e28a76977a96e263f84f95912b47f927b687', // USDT
   '0x8c4acd74ff4385f3b7911432fa6787aa14406f8b', // USDC.e
+  '0x05f1938646a897008e813fb03ce7c575eae45738', // PR
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
