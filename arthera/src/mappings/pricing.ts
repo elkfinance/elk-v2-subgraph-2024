@@ -4,7 +4,7 @@ import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts/index'
 import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
-const WETH_ADDRESS = '0xc7a183ad373301d68f7e0ee824c8c727c7d5b21d'
+const WETH_ADDRESS = '0x69d349e2009af35206efc3937bad6817424729f7'
 const STABLE1_WETH_PAIR = '0xe57f140a39906e0e980d62d5031f03cf16d2d15b'
 const STABLE2_WETH_PAIR = '0x5ceb22c13da3a86f3a332746404170a84719d3ca'
 
