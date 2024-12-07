@@ -196,7 +196,9 @@ export function handleSync(event: Sync): void {
     "17000270",
     "17000507",
     "17000595",
-    "17000797" // Add more block numbers as needed
+    "17000797",
+    "17000850",
+    "17001009" // Add more block numbers as needed
   ];
 
   // Get the block number as a string for comparison
