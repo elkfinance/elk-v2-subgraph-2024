@@ -4,28 +4,37 @@ import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts/index'
 import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
-const WETH_ADDRESS = '0xa00744882684c3e4747faefd68d283ea44099d03'
-const USDT_WETH_PAIR = '0x9ae4afdd73905cbc145a30741b833a216cbf19d3'
+const WETH_ADDRESS = 'replace_WETH'
+const STABLE1_WETH_PAIR = 'replace_Stable1'
+const STABLE2_WETH_PAIR = 'replace_Stable2'
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token0
+  let stable2Pair = Pair.load(STABLE2_WETH_PAIR) // stable2 is token1
+  let stable1Pair = Pair.load(STABLE1_WETH_PAIR) // stable1 is token1
 
-  if (usdtPair !== null) {
-    return usdtPair.token0Price
+  // both pairs have been created
+  if (stable2Pair !== null && stable1Pair !== null) {
+    let totalLiquidityETH = stable2Pair.reserve0.plus(stable1Pair.reserve0)
+    let stable2Weight = stable2Pair.reserve0.div(totalLiquidityETH)
+    let stable1Weight = stable1Pair.reserve0.div(totalLiquidityETH)
+    return stable2Pair.token1Price.times(stable2Weight).plus(stable1Pair.token1Price.times(stable1Weight))
+    // only STABLE2 is available
+  } else if (stable2Pair !== null) {
+    return stable2Pair.token1Price
+    // only STABLE1 is available
+  } else if (stable1Pair !== null) {
+    return stable1Pair.token1Price
   } else {
     return ONE_BD
   }
 }
 
+
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  WETH_ADDRESS, // WIOTX
-  '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
-  '0xe1ce1c0fa22ec693baca6f5076bcdc4d0183de1c', // oELK
-  '0x6fbcdc1169b5130c59e72e51ed68a84841c98cd1', // USDT
-  '0x3b2bf2b523f54c4e454f08aa286d03115aff326c', // USDC
-  '0x1cbad85aa66ff3c12dc84c5881886eeb29c1bb9b', // DAI
+  WETH_ADDRESS, // WETH
+
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps

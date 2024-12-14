@@ -1,18 +1,41 @@
 /* eslint-disable prefer-const */
 import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts/index'
-
 import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, UNTRACKED_PAIRS, ZERO_BD } from './helpers'
 
-const WETH_ADDRESS = '0xa00744882684c3e4747faefd68d283ea44099d03'
-const USDT_WETH_PAIR = '0x9ae4afdd73905cbc145a30741b833a216cbf19d3'
+const WETH_ADDRESS = 'replace_WETH'
+const STABLE1_WETH_PAIR = 'replace_Stable1'
+const STABLE2_WETH_PAIR = 'replace_Stable2'
+const STABLE3_WETH_PAIR = 'replace_Stable3'
+const STABLE4_WETH_PAIR = 'replace_Stable4'
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token0
+  let stable1Pair = Pair.load(STABLE1_WETH_PAIR) // stable1 is token1
+  let stable2Pair = Pair.load(STABLE2_WETH_PAIR) // stable2 is token0  
+  let stable3Pair = Pair.load(STABLE3_WETH_PAIR) // stable3 is token1
+  let stable4Pair = Pair.load(STABLE4_WETH_PAIR) // stable4 is token1
 
-  if (usdtPair !== null) {
-    return usdtPair.token0Price
+  // all 3 have been created
+  if (stable3Pair !== null && stable2Pair !== null && stable4Pair !== null) {
+    let totalLiquidityETH = stable3Pair.reserve0.plus(stable2Pair.reserve1).plus(stable4Pair.reserve0)
+    let stable3Weight = stable3Pair.reserve0.div(totalLiquidityETH)
+    let stable2Weight = stable2Pair.reserve1.div(totalLiquidityETH)
+    let stable4Weight = stable4Pair.reserve0.div(totalLiquidityETH)
+    return stable3Pair.token1Price.times(stable3Weight)
+      .plus(stable2Pair.token0Price.times(stable2Weight))
+      .plus(stable4Pair.token1Price.times(stable4Weight))
+    // dai and USDC have been created
+  } else if (stable3Pair !== null && stable2Pair !== null) {
+    let totalLiquidityETH = stable3Pair.reserve0.plus(stable2Pair.reserve1)
+    let stable3Weight = stable3Pair.reserve0.div(totalLiquidityETH)
+    let stable2Weight = stable2Pair.reserve1.div(totalLiquidityETH)
+    return stable3Pair.token1Price.times(stable3Weight).plus(stable2Pair.token0Price.times(stable2Weight))
+    // USDC is the only pair so far
+  } else if (stable2Pair !== null) {
+    return stable2Pair.token0Price
+  }  else if (stable1Pair !== null) {
+    return stable1Pair.token1Price
   } else {
     return ONE_BD
   }
@@ -20,12 +43,8 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  WETH_ADDRESS, // WIOTX
-  '0xeeeeeb57642040be42185f49c52f7e9b38f8eeee', // ELK
-  '0xe1ce1c0fa22ec693baca6f5076bcdc4d0183de1c', // oELK
-  '0x6fbcdc1169b5130c59e72e51ed68a84841c98cd1', // USDT
-  '0x3b2bf2b523f54c4e454f08aa286d03115aff326c', // USDC
-  '0x1cbad85aa66ff3c12dc84c5881886eeb29c1bb9b', // DAI
+  WETH_ADDRESS, // WETH
+
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
